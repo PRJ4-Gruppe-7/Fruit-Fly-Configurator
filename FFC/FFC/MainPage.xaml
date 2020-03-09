@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FFC.MainPage">
+
+    <!--<StackLayout>
+        --><!-- Place new controls here --><!--
+        <Label Text="Welcome to Xamarin.Forms!" 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" />
+    </StackLayout>-->
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Text="Fruit Fly Calibration" HorizontalTextAlignment="Center" FontSize="30" Grid.Row="0"/>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Grid.Column="0">
+                <Button Text="X+"/>
+                <Entry Placeholder="X"/>
+                <Button Text="X-"/>
+            </StackLayout>
+            <StackLayout Grid.Column="1">
+                <Button Text="Y+"/>
+                <Entry Placeholder="Y"/>
+                <Button Text="Y-"/>
+            </StackLayout>
+        </Grid>
+        <Button Text="Send reference point" Margin="0,20,0,20" Grid.Row="3" 
+                VerticalOptions="Center"
+                WidthRequest="345"/>
+    </Grid>
+
+</ContentPage>
