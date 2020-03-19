@@ -4,7 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FFC.Models;
+using FFC.Utilities;
 using Xamarin.Forms;
+using System.Windows;
+using FFC.ViewModels;
 
 namespace FFC
 {

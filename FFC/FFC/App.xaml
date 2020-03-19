@@ -5,7 +5,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="FFC.App">
-    <Application.Resources>
+
+
+
+	<Application.Resources>
         <Color x:Key="ContentPageColor">#F5EAEA</Color>
         <Color x:Key="ButtonColor">#7FCD91</Color>
 

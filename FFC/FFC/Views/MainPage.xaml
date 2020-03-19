@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:FFC.ViewModels;assembly=FFC"
              mc:Ignorable="d"
              x:Class="FFC.MainPage">
 
@@ -12,6 +13,9 @@
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
     </StackLayout>-->
+    <ContentPage.BindingContext>
+		<viewModels:MainPagePageModel/>
+    </ContentPage.BindingContext>
 
 
     <Grid>
@@ -32,18 +36,19 @@
 
             <StackLayout Grid.Column="0">
                 <Button Text="X+"/>
-                <Entry Placeholder="X"/>
+                <Entry Placeholder="X" x:Name="EntryX" Text="{Binding XValue}"/>
                 <Button Text="X-"/>
             </StackLayout>
             <StackLayout Grid.Column="1">
                 <Button Text="Y+"/>
-                <Entry Placeholder="Y"/>
+                <Entry Placeholder="Y" x:Name="EntryY" Text="{Binding YValue}"/>
                 <Button Text="Y-"/>
             </StackLayout>
         </Grid>
-        <Button Text="Send reference point" Margin="0,20,0,20" Grid.Row="3" 
+		<Button Text="Send reference point" Margin="0,20,0,20" Grid.Row="3" 
                 VerticalOptions="Center"
-                WidthRequest="345"/>
+                WidthRequest="345"
+		        Clicked="Button_OnClicked"/>
     </Grid>
 
 </ContentPage>
