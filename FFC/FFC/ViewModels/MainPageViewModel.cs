@@ -1,38 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using FFC.Models;
 using FFC.Utilities;
-using Prism.Commands;
-using Prism.Mvvm;
 using System.ComponentModel;
-using System.Threading.Tasks;
 using Xamarin.Forms;
+using System.Runtime.CompilerServices;
 
 namespace FFC.ViewModels
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
         public MainPageViewModel()
-        { }
+        {
+            IncrementCommand = new Command<string>(Increment);
+            DecrementCommand = new Command<string>(Decrement);
+        }
 
         #region Properties
 
-        public string XValue 
-        { 
-            get { return _xValue.ToString(); }
-            private set { } 
-        }
-        public string YValue 
+        public string XValue
         {
-            get { return _yValue.ToString(); } 
-            private set { }
+            get { return $"{_xValue}"; }
+            set { _xValue = Int32.Parse(value); }
         }
-        public string RSSI
-        { 
-            get { return _rssi.ToString(); }
-            private set { }
+
+        public string YValue
+        {
+            get { return $"{_yValue}"; }
+            set { _yValue = Int32.Parse(value); }
+        }
+
+        public string RSSIValue
+        {
+            get { return $"{_rssi}"; }
+            set { _rssi = Int32.Parse(value); }
         }
 
         private int _xValue { get; set; }
@@ -40,40 +41,50 @@ namespace FFC.ViewModels
         private int _rssi { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        
         #endregion
 
-        #region DelegateCommand
-        public ICommand IncrementCommand
-        {
-            get
-            {
-                return new Command<char>((x) => Increment(x));
-            }
-        }
+        #region Commands
 
-        //public ICommand IncrementCommand
-        //{
-        //    get
-        //    {
-        //        return _IncrementCommand ?? (_IncrementCommand = new
-        //            DelegateCommand<char>(IncrementCommandExecute));
-        //    }
-        //}
+        public ICommand IncrementCommand { get; }
+        public ICommand DecrementCommand { get; }
+
         #endregion
 
         #region Methods
-        void Increment(char value)
+
+        void Increment(string value)
         {
-            if (value == 'x')
+            if (value == "x")
             {
                 _xValue++;
-                OnPropertyChanged("XValue");
+                OnPropertyChanged(nameof(XValue));
             }
-            if (value == 'y')
+
+            if (value == "y")
             {
                 _yValue++;
-                OnPropertyChanged("YValue");
+                OnPropertyChanged(nameof(YValue));
             }
+            //else
+            //    throw new ArgumentException("Wrong value to increment");
+        }
+
+        void Decrement(string value)
+        {
+            if (value == "x")
+            {
+                _xValue--;
+                OnPropertyChanged(nameof(XValue));
+            }
+
+            if (value == "y")
+            {
+                _yValue--;
+                OnPropertyChanged(nameof(YValue));
+            }
+            //else
+              //  throw new ArgumentException("Wrong value to decrement");
         }
 
         //Test for SQLite
@@ -85,14 +96,11 @@ namespace FFC.ViewModels
             }
         }
 
-        protected virtual void OnPropertyChanged(string propertyName)
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
-            var changed = PropertyChanged;
-            if (changed != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+        
         #endregion
     }
 }
