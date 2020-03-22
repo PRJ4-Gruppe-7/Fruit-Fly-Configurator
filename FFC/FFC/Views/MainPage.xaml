@@ -14,7 +14,7 @@
            VerticalOptions="CenterAndExpand" />
     </StackLayout>-->
     <ContentPage.BindingContext>
-		<viewModels:MainPagePageModel/>
+		<viewModels:MainPageViewModel/>
     </ContentPage.BindingContext>
 
 

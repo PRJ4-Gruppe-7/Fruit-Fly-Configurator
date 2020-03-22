@@ -9,9 +9,9 @@ using Prism.Mvvm;
 
 namespace FFC.ViewModels
 {
-    public class MainPagePageModel : BindableBase
+    public class MainPageViewModel : BindableBase
     {
-        public MainPagePageModel()
+        public MainPageViewModel()
         { }
 
         private int _x;
@@ -30,6 +30,13 @@ namespace FFC.ViewModels
             set => SetProperty(ref _y, value);
         }
 
+        public int RSSI
+        {
+            get => _rssi;
+            set => SetProperty(ref _rssi, value);
+        }
+
+
         public void AddReferencePointToDatabase(int x, int y, int rssi)
         {
             using (var db = new ReferenceContext())
@@ -37,6 +44,7 @@ namespace FFC.ViewModels
                 db.Add(new Reference { xPoint = x, yPoint = y, RSSI = rssi });
             }
         }
+
         public void Button_OnClicked(object sender, EventArgs e)
         {
             AddReferencePointToDatabase(_x, _y, _rssi);

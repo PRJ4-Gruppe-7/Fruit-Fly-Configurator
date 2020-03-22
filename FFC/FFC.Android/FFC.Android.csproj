@@ -59,6 +59,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer">
       <Version>3.1.2</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.LiveShare">
+      <Version>1.1.57</Version>
+    </PackageReference>
     <PackageReference Include="Prism.Forms">
       <Version>7.2.0.1422</Version>
     </PackageReference>
