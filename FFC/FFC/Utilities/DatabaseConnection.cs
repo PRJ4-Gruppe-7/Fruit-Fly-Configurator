@@ -10,12 +10,13 @@ namespace FFC.Utilities
     public class ReferenceContext : DbContext
     {
 
-        private string _connectionString = "Source";
+        //private string _connectionString = "Server=tcp:fruitflyserver.database.windows.net,1433;Initial Catalog=FruitFly;Persist Security Info=False;User ID=dalleman;Password=Frugtflue1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         public DbSet<Reference> References { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder ob)
         {
-            ob.UseSqlServer(_connectionString);
+            ob.UseSqlite("Data Source = reference.db");
+            //ob.UseSqlServer(_connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder mb)

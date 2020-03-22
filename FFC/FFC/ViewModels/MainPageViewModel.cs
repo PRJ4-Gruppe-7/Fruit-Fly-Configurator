@@ -6,37 +6,77 @@ using FFC.Models;
 using FFC.Utilities;
 using Prism.Commands;
 using Prism.Mvvm;
+using System.ComponentModel;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace FFC.ViewModels
 {
-    public class MainPageViewModel : BindableBase
+    public class MainPageViewModel : INotifyPropertyChanged
     {
         public MainPageViewModel()
         { }
 
-        private int _x;
-        private int _y;
-        private int _rssi;
-        
-        public int XValue
+        #region Properties
+
+        public string XValue 
+        { 
+            get { return _xValue.ToString(); }
+            private set { } 
+        }
+        public string YValue 
         {
-            get => _x;
-            set => SetProperty(ref _x, value);
+            get { return _yValue.ToString(); } 
+            private set { }
+        }
+        public string RSSI
+        { 
+            get { return _rssi.ToString(); }
+            private set { }
         }
 
-        public int YValue
+        private int _xValue { get; set; }
+        private int _yValue { get; set; }
+        private int _rssi { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
+        #region DelegateCommand
+        public ICommand IncrementCommand
         {
-            get => _y;
-            set => SetProperty(ref _y, value);
+            get
+            {
+                return new Command<char>((x) => Increment(x));
+            }
         }
 
-        public int RSSI
+        //public ICommand IncrementCommand
+        //{
+        //    get
+        //    {
+        //        return _IncrementCommand ?? (_IncrementCommand = new
+        //            DelegateCommand<char>(IncrementCommandExecute));
+        //    }
+        //}
+        #endregion
+
+        #region Methods
+        void Increment(char value)
         {
-            get => _rssi;
-            set => SetProperty(ref _rssi, value);
+            if (value == 'x')
+            {
+                _xValue++;
+                OnPropertyChanged("XValue");
+            }
+            if (value == 'y')
+            {
+                _yValue++;
+                OnPropertyChanged("YValue");
+            }
         }
 
-
+        //Test for SQLite
         public void AddReferencePointToDatabase(int x, int y, int rssi)
         {
             using (var db = new ReferenceContext())
@@ -45,10 +85,14 @@ namespace FFC.ViewModels
             }
         }
 
-        public void Button_OnClicked(object sender, EventArgs e)
+        protected virtual void OnPropertyChanged(string propertyName)
         {
-            AddReferencePointToDatabase(_x, _y, _rssi);
-
+            var changed = PropertyChanged;
+            if (changed != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
+        #endregion
     }
 }
