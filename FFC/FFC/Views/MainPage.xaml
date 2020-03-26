@@ -28,6 +28,9 @@
 
         <Label Text="Fruit Fly Calibration" HorizontalTextAlignment="Center" FontSize="30" Grid.Row="0"/>
 
+        <Label Text="Reference point sent" x:Name="RefLabel"  Grid.Row="1" VerticalOptions="End" BackgroundColor="LightGreen"
+                   FontSize="Large" HorizontalOptions="Center" Opacity="0"/>
+        
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -37,13 +40,13 @@
             <StackLayout Grid.Column="0">
                 <Button Text="X+" Command="{Binding IncrementCommand}" CommandParameter="x"/>
                 <Entry  Text="{Binding XValue}" Placeholder="X"/>
-                <Button Text="X-" Command="{Binding DecrementCommand}" CommandParameter="x"/>
+                <Button Text="X-" Command="{Binding DecrementXCommand}" CommandParameter="x"/>
             </StackLayout>
             
             <StackLayout Grid.Column="1">
                 <Button Text="Y+" Command="{Binding IncrementCommand}" CommandParameter="y"/>
                 <Entry  Text="{Binding YValue}" Placeholder="Y"/>
-                <Button Text="Y-" Command="{Binding DecrementCommand}" CommandParameter="y"/>
+                <Button Text="Y-" Command="{Binding DecrementYCommand}" CommandParameter="y"/>
             </StackLayout>
         </Grid>
 		<Button Text="Send reference point" Margin="0,20,0,20" Grid.Row="3" 
