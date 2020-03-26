@@ -13,7 +13,8 @@ namespace FFC.ViewModels
         public MainPageViewModel()
         {
             IncrementCommand = new Command<string>(Increment);
-            DecrementCommand = new Command<string>(Decrement);
+            DecrementCommand = new Command<string>(Decrement, DecrementCommandCanExecute);
+            SendRefCommand = new Command(SendRef);
         }
 
         #region Properties
@@ -48,6 +49,7 @@ namespace FFC.ViewModels
 
         public ICommand IncrementCommand { get; }
         public ICommand DecrementCommand { get; }
+        public ICommand SendRefCommand { get; }
 
         #endregion
 
@@ -87,12 +89,24 @@ namespace FFC.ViewModels
               //  throw new ArgumentException("Wrong value to decrement");
         }
 
-        //Test for SQLite
-        public void AddReferencePointToDatabase(int x, int y, int rssi)
+        bool DecrementCommandCanExecute(string value)
         {
+            if (value == "x")
+                return _xValue <= 0 ? false : true;
+
+            //if (value == "y")
+            else
+                return _yValue <= 0 ? false : true;
+        }
+
+        //Test for SQLite
+        public void SendRef()
+        {
+            _rssi = new Random().Next(1, 1000);
+
             using (var db = new ReferenceContext())
             {
-                db.Add(new Reference { xPoint = x, yPoint = y, RSSI = rssi });
+                db.Add(new Reference { xPoint = _xValue, yPoint = _yValue, RSSI = _rssi });
             }
         }
 
