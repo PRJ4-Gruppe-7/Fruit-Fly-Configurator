@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
 using FFC.Models;
-using FFC.Utilities;
 using System.ComponentModel;
 using Xamarin.Forms;
 using System.Runtime.CompilerServices;
@@ -100,11 +99,7 @@ namespace FFC.ViewModels
         public void SendRef()
         {
             _rssi = new Random().Next(1, 1000);
-            
-            using (var db = new ReferenceContext())
-            {
-                db.Add(new Reference { xPoint = _xValue, yPoint = _yValue, RSSI = _rssi });
-            }
+
         }
 
         protected void OnPropertyChanged([CallerMemberName] string name = null)
