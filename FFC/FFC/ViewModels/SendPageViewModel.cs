@@ -9,9 +9,9 @@ using Prism.Commands;
 
 namespace FFC.ViewModels
 {
-    public class MainPageViewModel : INotifyPropertyChanged
+    public class SendPageViewModel : INotifyPropertyChanged
     {
-        public MainPageViewModel()
+        public SendPageViewModel()
         {
             IncrementCommand = new Command<string>(Increment);
             SendRefCommand = new Command(SendRef);

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:vm="clr-namespace:FFC.ViewModels"
+             mc:Ignorable="d"
+             x:Class="FFC.Views.SendPage">
+
+    <ContentPage.BindingContext>
+        <vm:SendPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Example item1" IconImageSource="menu.png" Order="Primary" Priority="0"/>
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Text="Fruit Fly Calibration" HorizontalTextAlignment="Center" FontSize="30" Grid.Row="0"/>
+
+        <Label Text="Reference point sent" x:Name="RefLabel"  Grid.Row="1" VerticalOptions="End" BackgroundColor="LightGreen"
+                   FontSize="Large" HorizontalOptions="Center" Opacity="0"/>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Grid.Column="0">
+                <Button Text="X+" Command="{Binding IncrementCommand}" CommandParameter="x"/>
+                <Entry  Text="{Binding XValue}" Placeholder="X"/>
+                <Button Text="X-" Command="{Binding DecrementXCommand}" CommandParameter="x"/>
+            </StackLayout>
+
+            <StackLayout Grid.Column="1">
+                <Button Text="Y+" Command="{Binding IncrementCommand}" CommandParameter="y"/>
+                <Entry  Text="{Binding YValue}" Placeholder="Y"/>
+                <Button Text="Y-" Command="{Binding DecrementYCommand}" CommandParameter="y"/>
+            </StackLayout>
+        </Grid>
+        <Button Text="Send reference point" Margin="0,20,0,20" Grid.Row="3" 
+                VerticalOptions="Center" WidthRequest="345" Command="{Binding SendRefCommand}"/>
+    </Grid>
+</ContentPage>
