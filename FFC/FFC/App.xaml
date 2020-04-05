@@ -10,23 +10,31 @@
         <Color x:Key="ButtonColor">#7FCD91</Color>-->
         <Color x:Key="ContentPageColor">#ffffff</Color>
         <Color x:Key="ButtonColor">#4db8ff</Color>
+        <Color x:Key="TxtColor">#000000</Color>
 
         <Style TargetType="{x:Type ContentPage}" ApplyToDerivedTypes="True">
             <Setter Property="BackgroundColor" Value="{StaticResource ContentPageColor}"/>
         </Style>
 
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="TextColor" Value="{StaticResource TxtColor}"/>
+        </Style>
+        
         <Style TargetType="{x:Type Button}">
             <Setter Property="BackgroundColor" Value="{StaticResource ButtonColor}"/>
             <Setter Property="HeightRequest" Value="80"/>
             <Setter Property="WidthRequest" Value="150"/>
             <Setter Property="HorizontalOptions" Value="Center"/>
             <Setter Property="FontSize" Value="20"/>
+            <Setter Property="TextColor" Value="{StaticResource TxtColor}"/>
         </Style>
 
         <Style TargetType="{x:Type Entry}">
             <Setter Property="WidthRequest" Value="150"/>
             <Setter Property="HeightRequest" Value="80"/>
             <Setter Property="Margin" Value="0,20,0,20"/>
+            <Setter Property="FontSize" Value="20"/>
             <Setter Property="HorizontalTextAlignment" Value="Center"/>
             <Setter Property="HorizontalOptions" Value="Center"/>
         </Style>
