@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
 using FFC.Models;
-using FFC.Utilities;
 using System.ComponentModel;
 using Xamarin.Forms;
 using System.Runtime.CompilerServices;
@@ -94,15 +93,11 @@ namespace FFC.ViewModels
         bool DecrementYCommandCanExecute()
         { return _yValue > 0 ? true : false; }
 
-        //Test for SQLite
+
         public void SendRef()
         {
             _rssi = new Random().Next(1, 1000);
-            
-            using (var db = new ReferenceContext())
-            {
-                db.Add(new Reference { xPoint = _xValue, yPoint = _yValue, RSSI = _rssi });
-            }
+
         }
         
         #endregion
