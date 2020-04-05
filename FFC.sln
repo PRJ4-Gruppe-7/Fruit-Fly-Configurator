@@ -7,12 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFC.Android", "FFC\FFC.Andr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFC", "FFC\FFC\FFC.csproj", "{AD57EAE2-C522-4DE2-AA4A-B0E85A3CFCC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseConnection", "DatabaseConnection\DatabaseConnection.csproj", "{9077D09C-8023-4531-A003-939DEA30AB36}"
-	ProjectSection(ProjectDependencies) = postProject
-		{D8D49897-F73D-4613-BAA3-11E572F0E462} = {D8D49897-F73D-4613-BAA3-11E572F0E462}
-		{AD57EAE2-C522-4DE2-AA4A-B0E85A3CFCC4} = {AD57EAE2-C522-4DE2-AA4A-B0E85A3CFCC4}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,10 +25,6 @@ Global
 		{AD57EAE2-C522-4DE2-AA4A-B0E85A3CFCC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD57EAE2-C522-4DE2-AA4A-B0E85A3CFCC4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AD57EAE2-C522-4DE2-AA4A-B0E85A3CFCC4}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{9077D09C-8023-4531-A003-939DEA30AB36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9077D09C-8023-4531-A003-939DEA30AB36}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9077D09C-8023-4531-A003-939DEA30AB36}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9077D09C-8023-4531-A003-939DEA30AB36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

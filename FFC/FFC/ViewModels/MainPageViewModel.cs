@@ -96,7 +96,7 @@ namespace FFC.ViewModels
         bool DecrementYCommandCanExecute()
         { return _yValue > 0 ? true : false; }
 
-        //Test for SQLite
+
         public void SendRef()
         {
             _rssi = new Random().Next(1, 1000);
