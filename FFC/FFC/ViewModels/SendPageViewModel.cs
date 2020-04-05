@@ -9,39 +9,37 @@ using Prism.Commands;
 
 namespace FFC.ViewModels
 {
-    public class SendPageViewModel : INotifyPropertyChanged
+    public class SendPageViewModel : BaseViewModel
     {
         public SendPageViewModel()
         {
+            Title = "Send Reference Points";
             IncrementCommand = new Command<string>(Increment);
             SendRefCommand = new Command(SendRef);
         }
 
         #region Properties
 
+        private int _xValue { get; set; }
         public string XValue
         {
             get { return $"{_xValue}"; }
             set { _xValue = value.Length > 0 ? Int32.Parse(value) : _xValue; }
         }
 
+        private int _yValue { get; set; }
         public string YValue
         {
             get { return $"{_yValue}"; }
             set { _yValue = value.Length > 0 ? Int32.Parse(value) : _yValue; }
         }
 
+        private int _rssi { get; set; }
         public string RSSIValue
         {
             get { return $"{_rssi}"; }
             set { _rssi = Int32.Parse(value); }
         }
-
-        private int _xValue { get; set; }
-        private int _yValue { get; set; }
-        private int _rssi { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
         
         #endregion
 
@@ -68,20 +66,20 @@ namespace FFC.ViewModels
             if (value == "x")
             {
                 _xValue++;
-                OnPropertyChanged(nameof(XValue));
+                NotifyPropertyChanged(nameof(XValue));
             }
 
             if (value == "y")
             {
                 _yValue++;
-                OnPropertyChanged(nameof(YValue));
+                NotifyPropertyChanged(nameof(YValue));
             }
         }
 
         void DecrementX()
         {
             _xValue--;
-            OnPropertyChanged(nameof(XValue));
+            NotifyPropertyChanged(nameof(XValue));
         }
 
         bool DecrementXCommandCanExecute()
@@ -90,7 +88,7 @@ namespace FFC.ViewModels
         void DecrementY()
         {
             _yValue--;
-            OnPropertyChanged(nameof(YValue));
+            NotifyPropertyChanged(nameof(YValue));
         }
 
         bool DecrementYCommandCanExecute()
@@ -105,11 +103,6 @@ namespace FFC.ViewModels
             {
                 db.Add(new Reference { xPoint = _xValue, yPoint = _yValue, RSSI = _rssi });
             }
-        }
-
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         
         #endregion

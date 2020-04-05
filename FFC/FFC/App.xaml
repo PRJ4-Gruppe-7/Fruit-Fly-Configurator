@@ -6,8 +6,10 @@
              mc:Ignorable="d"
              x:Class="FFC.App">
     <Application.Resources>
-        <Color x:Key="ContentPageColor">#F5EAEA</Color>
-        <Color x:Key="ButtonColor">#7FCD91</Color>
+        <!--<Color x:Key="ContentPageColor">#F5EAEA</Color>
+        <Color x:Key="ButtonColor">#7FCD91</Color>-->
+        <Color x:Key="ContentPageColor">#ffffff</Color>
+        <Color x:Key="ButtonColor">#4db8ff</Color>
 
         <Style TargetType="{x:Type ContentPage}" ApplyToDerivedTypes="True">
             <Setter Property="BackgroundColor" Value="{StaticResource ContentPageColor}"/>
@@ -18,6 +20,7 @@
             <Setter Property="HeightRequest" Value="80"/>
             <Setter Property="WidthRequest" Value="150"/>
             <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="FontSize" Value="20"/>
         </Style>
 
         <Style TargetType="{x:Type Entry}">

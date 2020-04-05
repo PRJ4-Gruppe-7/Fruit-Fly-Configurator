@@ -5,48 +5,48 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:vm="clr-namespace:FFC.ViewModels"
              mc:Ignorable="d"
-             x:Class="FFC.Views.SendPage">
+             x:Class="FFC.Views.SendPage"
+             Title="{Binding Title}">
 
     <ContentPage.BindingContext>
         <vm:SendPageViewModel/>
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Example item1" IconImageSource="menu.png" Order="Primary" Priority="0"/>
+        <ToolbarItem Text="Help" IconImageSource="help.png"/>
     </ContentPage.ToolbarItems>
-
+    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Label Text="Fruit Fly Calibration" HorizontalTextAlignment="Center" FontSize="30" Grid.Row="0"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <Label Text="Reference point sent" x:Name="RefLabel"  Grid.Row="1" VerticalOptions="End" BackgroundColor="LightGreen"
-                   FontSize="Large" HorizontalOptions="Center" Opacity="0"/>
+        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="Fruit Fly Calibration" 
+               HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="30"/>
 
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <!--<Label Text="Reference point sent" x:Name="RefLabel"  Grid.Row="1" VerticalOptions="End" BackgroundColor="LightGreen"
+                   FontSize="Large" HorizontalOptions="Center" Opacity="0"/>-->
+        
+        <StackLayout Grid.Row="1" Grid.Column="0">
+            <Button Text="X+" Command="{Binding IncrementCommand}" CommandParameter="x"/>
+            <Entry  Text="{Binding XValue}" Placeholder="X"/>
+            <Button Text="X-" Command="{Binding DecrementXCommand}" CommandParameter="x"/>
+        </StackLayout>
 
-            <StackLayout Grid.Column="0">
-                <Button Text="X+" Command="{Binding IncrementCommand}" CommandParameter="x"/>
-                <Entry  Text="{Binding XValue}" Placeholder="X"/>
-                <Button Text="X-" Command="{Binding DecrementXCommand}" CommandParameter="x"/>
-            </StackLayout>
+        <StackLayout Grid.Row="1" Grid.Column="1">
+            <Button Text="Y+" Command="{Binding IncrementCommand}" CommandParameter="y"/>
+            <Entry  Text="{Binding YValue}" Placeholder="Y"/>
+            <Button Text="Y-" Command="{Binding DecrementYCommand}" CommandParameter="y"/>
+        </StackLayout>
 
-            <StackLayout Grid.Column="1">
-                <Button Text="Y+" Command="{Binding IncrementCommand}" CommandParameter="y"/>
-                <Entry  Text="{Binding YValue}" Placeholder="Y"/>
-                <Button Text="Y-" Command="{Binding DecrementYCommand}" CommandParameter="y"/>
-            </StackLayout>
-        </Grid>
-        <Button Text="Send reference point" Margin="0,20,0,20" Grid.Row="3" 
+        <Button Text="Send reference point" Margin="0,20,0,20" Grid.Row="2" Grid.ColumnSpan="2" 
                 VerticalOptions="Center" WidthRequest="345" Command="{Binding SendRefCommand}"/>
     </Grid>
 </ContentPage>

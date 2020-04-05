@@ -14,7 +14,7 @@
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Title="About">
+        <NavigationPage Title="Settings">
             <x:Arguments>
                 <views:SettingsPage />
             </x:Arguments>
