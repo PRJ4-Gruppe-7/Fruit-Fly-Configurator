@@ -22,7 +22,7 @@ namespace FFC.Services
 
         public Task PostRefPointAsync(Reference refPoint, bool isNewItem = false)
         {
-            return restApiService.PostReferenceAsync(refPoint, isNewItem);
+            return restApiService.PostReferenceAsync(refPoint);
         }
     }
 }

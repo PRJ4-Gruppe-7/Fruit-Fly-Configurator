@@ -21,7 +21,7 @@ namespace FFC.Services
             _client = new HttpClient();
         }
 
-        public async Task PostReferenceAsync(Reference item, bool isNewItem = false)
+        public async Task PostReferenceAsync(Reference item)
         {
             var uri = new Uri(string.Format(ReferenceUrl, string.Empty));
 
@@ -29,14 +29,8 @@ namespace FFC.Services
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = null;
-            if (isNewItem)
-            {
-                response = await _client.PostAsync(uri, content);
-            }
-            else
-            {
-                response = await _client.PutAsync(uri, content);
-            }
+
+            response = await _client.PostAsync(uri, content);
 
             if (response.IsSuccessStatusCode)
             {

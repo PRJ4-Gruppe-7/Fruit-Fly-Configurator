@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FFC.Models;
+using FFC.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +22,13 @@ namespace FFC.Views
         private void InfoClicked(object sender, EventArgs e)
         {
             DisplayAlert("Information", "X/Y unit is meter\n0/0 is the bottom left of any given floor plan", "OK");
+        }
+
+        async void Button_Clicked(object sender, EventArgs e)
+        {
+            var item = (Reference)BindingContext;
+            await App.refPointManager.PostRefPointAsync(item);
+            await Navigation.PopAsync();
         }
     }
 }
