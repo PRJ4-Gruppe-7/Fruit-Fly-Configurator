@@ -13,7 +13,7 @@
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Help" IconImageSource="help.png"/>
+        <ToolbarItem Text="Info" IconImageSource="info.png" Clicked="InfoClicked"/>
     </ContentPage.ToolbarItems>
     
     <Grid>
@@ -28,12 +28,9 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="Fruit Fly Calibration" 
-               HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="30"/>
+        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="Sent un-/successfully" Opacity="0.4"
+               HorizontalTextAlignment="Center" VerticalOptions="Center"/>
 
-        <!--<Label Text="Reference point sent" x:Name="RefLabel"  Grid.Row="1" VerticalOptions="End" BackgroundColor="LightGreen"
-                   FontSize="Large" HorizontalOptions="Center" Opacity="0"/>-->
-        
         <StackLayout Grid.Row="1" Grid.Column="0">
             <Button Text="X+" Command="{Binding IncrementCommand}" CommandParameter="x"/>
             <Entry  Text="{Binding XValue}" Placeholder="X"/>
@@ -47,6 +44,6 @@
         </StackLayout>
 
         <Button Text="Send reference point" Margin="0,20,0,20" Grid.Row="2" Grid.ColumnSpan="2" 
-                VerticalOptions="Center" WidthRequest="345" Command="{Binding SendRefCommand}"/>
+                VerticalOptions="Center" WidthRequest="345" FontSize="16" Command="{Binding SendRefCommand}"/>
     </Grid>
 </ContentPage>

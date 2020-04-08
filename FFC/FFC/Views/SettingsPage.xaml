@@ -16,7 +16,7 @@
         <StackLayout>
             <Label Text="Settings and such"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand" FontSize="26" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
