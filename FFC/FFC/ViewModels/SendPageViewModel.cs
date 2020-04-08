@@ -4,6 +4,7 @@ using FFC.Models;
 using System.ComponentModel;
 using Xamarin.Forms;
 using System.Runtime.CompilerServices;
+using FFC.Services;
 using Prism.Commands;
 
 namespace FFC.ViewModels
@@ -94,10 +95,11 @@ namespace FFC.ViewModels
         { return _yValue > 0 ? true : false; }
 
 
-        public void SendRef()
+        async void SendRef()
         {
             _rssi = new Random().Next(1, 1000);
-
+            var ReferencePoint = new Reference();
+            await RefPointManager.PostRefPointAsync(ReferencePoint);
         }
         
         #endregion
