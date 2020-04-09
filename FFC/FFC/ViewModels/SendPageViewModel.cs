@@ -20,21 +20,21 @@ namespace FFC.ViewModels
 
         #region Properties
 
-        private int _xValue { get; set; }
+        public int _xValue { get; set; }
         public string XValue
         {
             get { return $"{_xValue}"; }
             set { _xValue = value.Length > 0 ? Int32.Parse(value) : _xValue; }
         }
 
-        private int _yValue { get; set; }
+        public int _yValue { get; set; }
         public string YValue
         {
             get { return $"{_yValue}"; }
             set { _yValue = value.Length > 0 ? Int32.Parse(value) : _yValue; }
         }
 
-        private int _rssi { get; set; }
+        public int _rssi { get; set; }
         public string RSSIValue
         {
             get { return $"{_rssi}"; }

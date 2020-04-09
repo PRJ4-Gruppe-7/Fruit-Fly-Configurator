@@ -6,8 +6,8 @@ namespace FFC.Models
 {
     public class Reference
     {
-        public int xPoint { get; set; }
-        public int yPoint { get; set; }
-        public int RSSI { get; set; }
+        public int x { get; set; }
+        public int y { get; set; }
+        public int rssI1 { get; set; }
     }
 }

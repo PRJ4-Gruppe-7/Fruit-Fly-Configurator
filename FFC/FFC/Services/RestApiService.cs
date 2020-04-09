@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq.Expressions;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,9 @@ namespace FFC.Services
     {
         HttpClient _client;
         public static string BaseAddress = "https://fruitflyapi.azurewebsites.net";
-        public static string ReferenceUrl = BaseAddress + "/api/Referencepoint";
+        public static string AuthKey = "829320-adajdasd-12vasdas-baslk3";
+        public static string ReferenceUrl = BaseAddress + "/api/Referencepoint?api_key=" + AuthKey;
+        
         public List<Reference> Items { get; private set; }
 
         public RestApiService()
@@ -25,18 +28,24 @@ namespace FFC.Services
         {
             var uri = new Uri(string.Format(ReferenceUrl, string.Empty));
 
-            var json = JsonConvert.SerializeObject(item);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            HttpResponseMessage response = null;
-
-            response = await _client.PostAsync(uri, content);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                Debug.WriteLine(@"\Reference Point successfully saved.");
-            }
+                var json = JsonConvert.SerializeObject(item);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
 
+                HttpResponseMessage response = null;
+
+                response = await _client.PostAsync(uri, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine(@"\Reference Point successfully saved.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
         }
 
         public async Task<List<Reference>> RefreshDataAsync()

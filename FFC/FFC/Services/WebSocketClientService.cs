@@ -65,13 +65,15 @@ namespace FFC.Services
                 receiveDone.WaitOne();
 
                 // Write the response to the console.  
-                Console.WriteLine("Response received : {0}", response);
-                
+                //Console.WriteLine("Response received : {0}", response);
+
+                //_rssi = response;
 
                 // Release the socket.  
                 client.Shutdown(SocketShutdown.Both);
                 client.Close();
 
+                
             }
             catch (Exception e)
             {
