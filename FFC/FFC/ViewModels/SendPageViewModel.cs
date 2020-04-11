@@ -93,7 +93,10 @@ namespace FFC.ViewModels
 
         bool DecrementYCommandCanExecute()
         { return _yValue > 0 ? true : false; }
-        
+
         #endregion
+
     }
+
+
 }

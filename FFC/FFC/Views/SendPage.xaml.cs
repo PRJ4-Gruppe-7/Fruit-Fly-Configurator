@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
+using FFC.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -27,11 +28,14 @@ namespace FFC.Views
         async void Button_Clicked(object sender, EventArgs e)
         {
             //StartClient();
-            //var item = (Reference)BindingContext;
+            var spvm = (SendPageViewModel)this.BindingContext;
             var item = new Reference();
-            item.x = 1;
-            item.y = 3;
-            item.rssI1 = 1;
+            item.x = Int32.Parse(spvm.XValue);
+            item.y = Int32.Parse(spvm.YValue);
+            item.rssI1 = Int32.Parse(spvm.RSSIValue);
+            //item.x = 123;
+            //item.y = 123;
+            //item.rssI1 = 123;
             await App.refPointManager.PostRefPointAsync(item);
             await Navigation.PopAsync();
         }

@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:vm="clr-namespace:FFC.ViewModels"
+             xmlns:mo="clr-namespace:FFC.Models;assembly=FFC"
              mc:Ignorable="d"
              x:Class="FFC.Views.SendPage"
              Title="{Binding Title}">
@@ -11,6 +12,7 @@
     <ContentPage.BindingContext>
         <vm:SendPageViewModel/>
     </ContentPage.BindingContext>
+
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Info" IconImageSource="info.png" Clicked="InfoClicked"/>
@@ -33,7 +35,7 @@
 
         <StackLayout Grid.Row="1" Grid.Column="0">
             <Button Text="X+" Command="{Binding IncrementCommand}" CommandParameter="x"/>
-            <Entry  Text="{Binding XValue}" Placeholder="X"/>
+            <Entry  Text="{Binding XValue}" Placeholder="X" />
             <Button Text="X-" Command="{Binding DecrementXCommand}" CommandParameter="x"/>
         </StackLayout>
 
@@ -43,7 +45,11 @@
             <Button Text="Y-" Command="{Binding DecrementYCommand}" CommandParameter="y"/>
         </StackLayout>
 
-        <Button Text="Send reference point" Margin="0,20,0,20" Grid.Row="2" Grid.ColumnSpan="2" 
-                VerticalOptions="Center" WidthRequest="345" FontSize="16" Clicked="Button_Clicked"/>
+		<Button Text="Send reference point" Margin="0,20,0,20" Grid.Row="2" Grid.ColumnSpan="2" 
+                VerticalOptions="Center" WidthRequest="345" FontSize="16" Clicked="Button_Clicked">
+			<Button.BindingContext>
+				<vm:SendPageViewModel/>
+			</Button.BindingContext>
+        </Button>
     </Grid>
 </ContentPage>
