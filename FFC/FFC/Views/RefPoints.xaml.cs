@@ -14,10 +14,12 @@ namespace FFC.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RefPoints : ContentPage
     {
-        
+        RefPointsViewModel vm;
         public RefPoints()
         {
             InitializeComponent();
+            vm = new RefPointsViewModel();
+            listViewPoints.ItemsSource = vm.Points;
         }
 
         async void GetRefPoints_OnClicked(object sender, EventArgs e)

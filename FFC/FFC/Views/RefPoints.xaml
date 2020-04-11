@@ -15,13 +15,23 @@
 </ContentPage.BindingContext>
 
 
+
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
+			<ListView x:Name="listViewPoints" Grid.Row="0">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<TextCell Text="{Binding PointID}" 
+								  Detail="{Binding CoordinateSet}" />
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
 
+		
 		<Button Text="Get Reference points" Margin="0,20,0,20"
 		        VerticalOptions="End" WidthRequest="345" FontSize="16" 
 		        Clicked="GetRefPoints_OnClicked" HorizontalOptions="Center"
@@ -30,18 +40,8 @@
                 <Button.BindingContext>
                     <vm:RefPointsViewModel/>
                 </Button.BindingContext>
-			</Button>
+		</Button>
 			
-	<!--<ScrollView Grid.Row="0">
-			<ListView x:Name="GroupedView" GroupDisplayBinding="{Binding Title}"
-			          GroupShortNameBinding="{Binding ShortName}" IsGroupingEnabled="true">
-				<ListView.ItemTemplate>
-					<DataTemplate>
-						<TextCell Text="{Binding ID}" Detail="{Binding CoordinateSet}"/>
-					</DataTemplate>
-				</ListView.ItemTemplate>
-			</ListView>
-		</ScrollView>-->
 
 	</Grid>
 	</ContentPage>
