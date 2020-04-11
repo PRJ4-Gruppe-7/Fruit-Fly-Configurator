@@ -51,8 +51,9 @@ namespace FFC.Views
              *  if it is in the database, and print it out in the console. 
              */
 
-            //Coordinate with ID to be deleted
-            string ID = "253";
+            //Coordinate with ID to be deleted (Check wether or not the ID chosen is in the database.
+            //If it is not, an exception will be catched and displayed in the console.
+            string ID = "252";
 
             //Check for the specific ID and print in console
             var Points1 = await App.refPointManager.GetSpecificRefPointAsync(ID);
