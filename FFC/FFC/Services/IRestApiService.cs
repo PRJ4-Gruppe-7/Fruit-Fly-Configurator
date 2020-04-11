@@ -9,8 +9,10 @@ namespace FFC.Services
     {
         Task PostReferenceAsync(Reference item);
 
-        Task<ObservableCollection<Reference>> RefreshDataAsync();
+        Task<List<Reference>> RefreshDataAsync();
 
         Task DeleteReferenceAsync(string id);
+
+        Task<Reference> GetSpecificRefID(string id);
     }
 }

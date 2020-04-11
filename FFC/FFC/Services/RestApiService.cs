@@ -23,7 +23,8 @@ namespace FFC.Services
         //ReferenceURL used as the combined url
         public static string ReferenceUrl = BaseAddress + "/api/Referencepoint";
         
-        public ObservableCollection<Reference> Items { get; private set; }
+        public List<Reference> Items { get; private set; }
+        public Reference Item { get; private set; }
 
         public RestApiService()
         {
@@ -65,9 +66,9 @@ namespace FFC.Services
         }
 
         //Retrieves all prior dialed reference points 
-        public async Task<ObservableCollection<Reference>> RefreshDataAsync()
+        public async Task<List<Reference>> RefreshDataAsync()
         {
-            Items = new ObservableCollection<Reference>();
+            Items = new List<Reference>();
 
             try
             {
@@ -76,7 +77,7 @@ namespace FFC.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    Items = JsonConvert.DeserializeObject<ObservableCollection<Reference>>(content);
+                    Items = JsonConvert.DeserializeObject<List<Reference>>(content);
                 }
             }
             catch (Exception ex)
@@ -104,5 +105,26 @@ namespace FFC.Services
                 Console.WriteLine("Exception message: {0} ", ex.Message);
             }
         }
+
+        public async Task<Reference> GetSpecificRefID(string id)
+        {
+            Item = new Reference();
+            try
+            {
+                var response = await _client.GetAsync(ReferenceUrl + "/" + id);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    Item = JsonConvert.DeserializeObject<Reference>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception message: {0} ", ex.Message);
+            }
+
+            return Item;
+        }
+            
     }
 }

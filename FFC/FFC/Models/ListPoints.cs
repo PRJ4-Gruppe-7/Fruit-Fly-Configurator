@@ -15,25 +15,17 @@ namespace FFC.Models
             List<ListPoints> points = new List<ListPoints>()
             {
                 new ListPoints() {PointID = 2, CoordinateSet="2,2"},
-                new ListPoints() {PointID = 1, CoordinateSet="3,3"},
                 new ListPoints() {PointID = 2, CoordinateSet="2,2"},
-                new ListPoints() {PointID = 1, CoordinateSet="3,3"},
                 new ListPoints() {PointID = 2, CoordinateSet="2,2"},
-                new ListPoints() {PointID = 1, CoordinateSet="3,3"},
                 new ListPoints() {PointID = 2, CoordinateSet="2,2"},
-                new ListPoints() {PointID = 1, CoordinateSet="3,3"},
                 new ListPoints() {PointID = 2, CoordinateSet="2,2"},
-                new ListPoints() {PointID = 1, CoordinateSet="3,3"},
                 new ListPoints() {PointID = 2, CoordinateSet="2,2"},
-                new ListPoints() {PointID = 1, CoordinateSet="3,3"},
                 new ListPoints() {PointID = 2, CoordinateSet="2,2"},
-                new ListPoints() {PointID = 1, CoordinateSet="3,3"},
                 new ListPoints() {PointID = 2, CoordinateSet="2,2"},
-                new ListPoints() {PointID = 1, CoordinateSet="3,3"},
                 new ListPoints() {PointID = 2, CoordinateSet="2,2"},
-                new ListPoints() {PointID = 1, CoordinateSet="3,3"},
                 new ListPoints() {PointID = 2, CoordinateSet="2,2"},
-                new ListPoints() {PointID = 1, CoordinateSet="3,3"},
+                new ListPoints() {PointID = 2, CoordinateSet="2,2"},
+                new ListPoints() {PointID = 2, CoordinateSet="2,2"}
             };
 
             return points;

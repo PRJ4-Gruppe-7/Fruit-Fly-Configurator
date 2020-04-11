@@ -9,6 +9,7 @@ namespace FFC.ViewModels
     public class RefPointsViewModel : BaseViewModel
     {
         public List<ListPoints> Points { get; set; }
+        public string CurrentID { get; set; }
 
         public RefPointsViewModel()
         {

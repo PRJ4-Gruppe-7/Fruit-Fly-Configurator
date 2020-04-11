@@ -18,11 +18,24 @@
 
 	<Grid>
 		<Grid.RowDefinitions>
+			<RowDefinition Height="100"/>
 			<RowDefinition Height="*"/>
-			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
-			<ListView x:Name="listViewPoints" Grid.Row="0">
+		<Button Text="Get Reference points" Margin="20 ,20,0,20" HeightRequest="50"
+		        VerticalOptions="Start" WidthRequest="220" FontSize="16" 
+		        Clicked="GetRefPoints_OnClicked" HorizontalOptions="Start"
+		        Grid.Row="0">
+
+			<Button.BindingContext>
+				<vm:RefPointsViewModel/>
+			</Button.BindingContext>
+		</Button>
+		
+		<Button Text="Delete" Margin="0,20,20,20" HeightRequest="50" VerticalOptions="Start"
+				WidthRequest="100" FontSize="16" Grid.Row="0" HorizontalOptions="End" Clicked="DeleteRef_Clicked"/>
+
+		<ListView x:Name="listViewPoints" Grid.Row="1">
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<TextCell Text="{Binding PointID}" 
@@ -32,15 +45,7 @@
 			</ListView>
 
 		
-		<Button Text="Get Reference points" Margin="0,20,0,20"
-		        VerticalOptions="End" WidthRequest="345" FontSize="16" 
-		        Clicked="GetRefPoints_OnClicked" HorizontalOptions="Center"
-		        Grid.Row="1">
-				
-                <Button.BindingContext>
-                    <vm:RefPointsViewModel/>
-                </Button.BindingContext>
-		</Button>
+
 			
 
 	</Grid>
