@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using System.Runtime.CompilerServices;
 using FFC.Services;
 using Prism.Commands;
+using Prism.Navigation.Xaml;
 
 namespace FFC.ViewModels
 {
@@ -96,18 +97,11 @@ namespace FFC.ViewModels
 
         async void SendRef()
         {
-            var item = new Reference();
-            item.x = _xValue;
-            item.y = _yValue;
-            item.rssI1 = _rssi;
+            var item = new Reference { x = _xValue, y = _yValue, rssI1 = _rssi};
 
             await App.refPointManager.PostRefPointAsync(item);
             //await Navigation.PopAsync();
         }
-
         #endregion
-
     }
-
-
 }

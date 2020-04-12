@@ -40,6 +40,8 @@ namespace FFC.ViewModels
              *  That it retrieves the second point in the database with the ID 2, with the 
              *  values x:81, y:23 and rssi1: 80
              */
+
+            refs.Clear();
             var tempRefs = await App.refPointManager.GetRefPointsAsync();
 
             for(int i = 0;i < tempRefs.Count; i++)
