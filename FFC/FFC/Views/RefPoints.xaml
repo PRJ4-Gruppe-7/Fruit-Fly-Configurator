@@ -24,7 +24,7 @@
 
 		<Button Text="Get Reference points" Margin="20 ,20,0,20" HeightRequest="50"
 		        VerticalOptions="Start" WidthRequest="220" FontSize="16" 
-		        Clicked="GetRefPoints_OnClicked" HorizontalOptions="Start"
+		        Command="{Binding GetRefPointsCommand}"  HorizontalOptions="Start"
 		        Grid.Row="0">
 
 			<Button.BindingContext>
@@ -35,11 +35,11 @@
 		<Button Text="Delete" Margin="0,20,20,20" HeightRequest="50" VerticalOptions="Start"
 				WidthRequest="100" FontSize="16" Grid.Row="0" HorizontalOptions="End" Clicked="DeleteRef_Clicked"/>
 
-		<ListView x:Name="listViewPoints" Grid.Row="1">
+		<ListView x:Name="listViewPoints" ItemsSource="{Binding Refs}" Grid.Row="1">
 				<ListView.ItemTemplate>
 					<DataTemplate>
-						<TextCell Text="{Binding PointID}" 
-								  Detail="{Binding CoordinateSet}" />
+						<TextCell Text="{Binding referencepointId}" 
+								  Detail="{Binding x}" />
 					</DataTemplate>
 				</ListView.ItemTemplate>
 			</ListView>

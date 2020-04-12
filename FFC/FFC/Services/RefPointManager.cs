@@ -16,7 +16,7 @@ namespace FFC.Services
             restApiService = service;
         }
 
-        public Task<List<Reference>> GetRefPointsAsync()
+        public Task<ObservableCollection<Reference>> GetRefPointsAsync()
         {
             return restApiService.RefreshDataAsync();
         }

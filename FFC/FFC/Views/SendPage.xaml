@@ -46,7 +46,7 @@
         </StackLayout>
 
 		<Button Text="Send reference point" Margin="0,20,0,20" Grid.Row="2" Grid.ColumnSpan="2" 
-                VerticalOptions="Center" WidthRequest="345" FontSize="16" Clicked="Button_Clicked">
+                VerticalOptions="Center" WidthRequest="345" FontSize="16" Command="{Binding SendRefCommand}">
 			<Button.BindingContext>
 				<vm:SendPageViewModel/>
 			</Button.BindingContext>

@@ -23,7 +23,7 @@ namespace FFC.Services
         //ReferenceURL used as the combined url
         public static string ReferenceUrl = BaseAddress + "/api/Referencepoint";
         
-        public List<Reference> Items { get; private set; }
+        public ObservableCollection<Reference> Items { get; private set; }
         public Reference Item { get; private set; }
 
         public RestApiService()
@@ -66,9 +66,9 @@ namespace FFC.Services
         }
 
         //Retrieves all prior dialed reference points 
-        public async Task<List<Reference>> RefreshDataAsync()
+        public async Task<ObservableCollection<Reference>> RefreshDataAsync()
         {
-            Items = new List<Reference>();
+            Items = new ObservableCollection<Reference>();
 
             try
             {
@@ -77,7 +77,7 @@ namespace FFC.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    Items = JsonConvert.DeserializeObject<List<Reference>>(content);
+                    Items = JsonConvert.DeserializeObject<ObservableCollection<Reference>>(content);
                 }
             }
             catch (Exception ex)
