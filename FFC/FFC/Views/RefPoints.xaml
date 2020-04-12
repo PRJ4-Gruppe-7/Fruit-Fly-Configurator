@@ -38,7 +38,7 @@
 		<ListView x:Name="listViewPoints" ItemsSource="{Binding Refs}" Grid.Row="1">
 				<ListView.ItemTemplate>
 					<DataTemplate>
-                        <ViewCell>
+                        <!--<ViewCell>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -53,8 +53,9 @@
                                 <Label Text="{Binding rssI1}" Grid.Column="3"/>
                             </Grid>
 
-                        </ViewCell>
-                    </DataTemplate>
+                        </ViewCell>-->
+                    <TextCell Text="{Binding referencepointId}" Detail="{Binding detail}" />
+                </DataTemplate>
 				</ListView.ItemTemplate>
 			</ListView>
 
