@@ -38,9 +38,23 @@
 		<ListView x:Name="listViewPoints" ItemsSource="{Binding Refs}" Grid.Row="1">
 				<ListView.ItemTemplate>
 					<DataTemplate>
-						<TextCell Text="{Binding referencepointId}" 
-								  Detail="{Binding x}" />
-					</DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="{Binding referencepointId}" Grid.Column="0"/>
+                                <Label Text="{Binding x}" Grid.Column="1"/>
+                                <Label Text="{Binding y}" Grid.Column="2"/>
+                                <Label Text="{Binding rssI1}" Grid.Column="3"/>
+                            </Grid>
+
+                        </ViewCell>
+                    </DataTemplate>
 				</ListView.ItemTemplate>
 			</ListView>
 
