@@ -17,7 +17,7 @@ namespace FFC.ViewModels
         }
 
         #region Properties
-        private ObservableCollection<Reference> refs = new ObservableCollection<Reference>();
+        public ObservableCollection<Reference> refs = new ObservableCollection<Reference>();
         public ObservableCollection<Reference> Refs { get { return refs; } }
 
         #endregion
@@ -30,7 +30,7 @@ namespace FFC.ViewModels
 
         #region Methods
 
-        async void GetRefPoints()
+        public async void GetRefPoints()
         {
             //var vm = (RefPointsViewModel)this.BindingContext;
             //vm.Points = await App.refPointManager.GetRefPointsAsync();

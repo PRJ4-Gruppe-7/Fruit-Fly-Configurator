@@ -10,5 +10,6 @@ namespace FFC.Models
         public int x { get; set; }
         public int y { get; set; }
         public int rssI1 { get; set; }
+        //public string detail { get { return ("x: {0}, y: {1}, rssi: {2}", x, y, rssI1); } }
     }
 }
