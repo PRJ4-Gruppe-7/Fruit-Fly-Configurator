@@ -19,31 +19,29 @@ namespace FFC.Views
         {
             InitializeComponent();
             vm = new RefPointsViewModel();
-            listViewPoints.ItemsSource = vm.Refs;
-            //vm.Refs.Add(new Reference { referencepointId = 267, x = 1, y = 2, rssI1 = 3 });
             vm.GetRefPoints();
+            listViewPoints.ItemsSource = vm.refs;
+            this.BindingContext = vm;
         }
 
         //async void GetRefPoints_OnClicked(object sender, EventArgs e)
         //{
-        //    //var vm = (RefPointsViewModel)this.BindingContext;
-        //    //vm.Points = await App.refPointManager.GetRefPointsAsync();
+        //    var vm = (RefPointsViewModel)this.BindingContext;
 
-        //    #region Test
-        //    /*  Test for "Get Reference Point" button, where it is displayed in the console
-        //     *  That it retrieves the second point in the database with the ID 2, with the 
-        //     *  values x:81, y:23 and rssi1: 80
-        //     */
-        //    var Points = await App.refPointManager.GetRefPointsAsync();
-        //    // Console.WriteLine("{0}, {1}, {2}", Points[1].x, Points[1].y, Points[1].rssI1);
+        //    vm.refs.Clear();
+        //    var tempRefs = await App.refPointManager.GetRefPointsAsync();
 
-        //    int i = 0;
-
-        //    while(Points[i] != null)
+        //    for (int i = 0; i < tempRefs.Count; i++)
         //    {
-        //        Reference tempRef = new Reference()
+        //        vm.refs.Add(new Reference { referencepointId = tempRefs[i].referencepointId, x = tempRefs[i].x, y = tempRefs[i].y, rssI1 = tempRefs[i].rssI1 });
         //    }
-        //    #endregion
+
+        //    for (int i = 0; i < vm.Refs.Count; i++)
+        //    {
+        //        Console.WriteLine("ID: {0}, x: {1}, y: {2}, rssi: {3}", vm.Refs[i].referencepointId, vm.Refs[i].x, vm.Refs[i].y, vm.Refs[i].rssI1);
+        //    }
+        //    Console.WriteLine("{0}", vm.Refs.Count);
+
         //}
 
         async void DeleteRef_Clicked(object sender, EventArgs e)

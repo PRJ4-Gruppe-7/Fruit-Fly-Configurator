@@ -25,19 +25,18 @@ namespace FFC.Views
             DisplayAlert("Information", "X/Y unit is meter\n0/0 is the bottom left of any given floor plan", "OK");
         }
 
-        //async void Button_Clicked(object sender, EventArgs e)
-        //{
-        //    //StartClient();
-        //    var spvm = (SendPageViewModel)this.BindingContext;
-        //    var item = new Reference();
-        //    item.x = Int32.Parse(spvm.XValue);
-        //    item.y = Int32.Parse(spvm.YValue);
-        //    item.rssI1 = Int32.Parse(spvm.RSSIValue);
-        //    //item.x = 123;
-        //    //item.y = 123;
-        //    //item.rssI1 = 123;
-        //    await App.refPointManager.PostRefPointAsync(item);
-        //    await Navigation.PopAsync();
-        //}
+        async void Button_Clicked(object sender, EventArgs e)
+        {
+            //StartClient();
+            var spvm = (SendPageViewModel)this.BindingContext;
+            var item = new Reference();
+
+            item.x = Int32.Parse(spvm.XValue);
+            item.y = Int32.Parse(spvm.YValue);
+            item.rssI1 = Int32.Parse(spvm.RSSIValue);
+
+            await App.refPointManager.PostRefPointAsync(item);
+            await Navigation.PopAsync();
+        }
     }
 }

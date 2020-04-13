@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using FFC.Models;
@@ -44,7 +45,7 @@ namespace FFC.ViewModels
             refs.Clear();
             var tempRefs = await App.refPointManager.GetRefPointsAsync();
 
-            for(int i = 0;i < tempRefs.Count; i++)
+            for (int i = 0; i < tempRefs.Count; i++)
             {
                 refs.Add(new Reference { referencepointId = tempRefs[i].referencepointId, x = tempRefs[i].x, y = tempRefs[i].y, rssI1 = tempRefs[i].rssI1 });
             }
@@ -53,7 +54,9 @@ namespace FFC.ViewModels
             {
                 Console.WriteLine("ID: {0}, x: {1}, y: {2}, rssi: {3}", Refs[i].referencepointId, Refs[i].x, Refs[i].y, Refs[i].rssI1);
             }
+
             Console.WriteLine("{0}", Refs.Count);
+            NotifyPropertyChanged("Refs");
 
             //int i = 0;
             //while(Refs[i] != null)

@@ -16,7 +16,6 @@ namespace FFC.ViewModels
         {
             Title = "Send Reference Points";
             IncrementCommand = new Command<string>(Increment);
-            SendRefCommand = new Command(SendRef);
         }
 
         #region Properties
@@ -95,13 +94,7 @@ namespace FFC.ViewModels
         bool DecrementYCommandCanExecute()
         { return _yValue > 0 ? true : false; }
 
-        async void SendRef()
-        {
-            var item = new Reference { x = _xValue, y = _yValue, rssI1 = _rssi};
 
-            await App.refPointManager.PostRefPointAsync(item);
-            //await Navigation.PopAsync();
-        }
         #endregion
     }
 }
