@@ -24,7 +24,7 @@
 
 		<Button Text="Get Reference points" Margin="20 ,20,0,20" HeightRequest="50"
 		        VerticalOptions="Start" WidthRequest="220" FontSize="16" 
-		        Command="{Binding GetRefPointsCommand}"  HorizontalOptions="Start"
+		        Clicked="GetRefPoints_OnClicked"  HorizontalOptions="Start"
 		        Grid.Row="0">
 
 			<Button.BindingContext>

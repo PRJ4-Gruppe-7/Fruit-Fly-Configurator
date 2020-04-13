@@ -24,26 +24,11 @@ namespace FFC.Views
             this.BindingContext = vm;
         }
 
-        //async void GetRefPoints_OnClicked(object sender, EventArgs e)
-        //{
-        //    var vm = (RefPointsViewModel)this.BindingContext;
-
-        //    vm.refs.Clear();
-        //    var tempRefs = await App.refPointManager.GetRefPointsAsync();
-
-        //    for (int i = 0; i < tempRefs.Count; i++)
-        //    {
-        //        vm.refs.Add(new Reference { referencepointId = tempRefs[i].referencepointId, x = tempRefs[i].x, y = tempRefs[i].y, rssI1 = tempRefs[i].rssI1 });
-        //    }
-
-        //    for (int i = 0; i < vm.Refs.Count; i++)
-        //    {
-        //        Console.WriteLine("ID: {0}, x: {1}, y: {2}, rssi: {3}", vm.Refs[i].referencepointId, vm.Refs[i].x, vm.Refs[i].y, vm.Refs[i].rssI1);
-        //    }
-        //    Console.WriteLine("{0}", vm.Refs.Count);
-
-        //}
-
+        void GetRefPoints_OnClicked(object sender, EventArgs e)
+        {
+            vm.GetRefPoints();
+            listViewPoints.ItemsSource = vm.Refs;
+        }
         async void DeleteRef_Clicked(object sender, EventArgs e)
         {
             //var vm = (RefPointsViewModel)this.BindingContext;

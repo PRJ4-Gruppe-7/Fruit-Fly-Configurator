@@ -19,7 +19,11 @@ namespace FFC.ViewModels
 
         #region Properties
         private ObservableCollection<Reference> refs = new ObservableCollection<Reference>();
-        public ObservableCollection<Reference> Refs { get { return refs; } }
+        public ObservableCollection<Reference> Refs 
+        { 
+            get { return refs; } 
+            set { refs = value; NotifyPropertyChanged(nameof(Refs)); }
+        }
 
         #endregion
 
