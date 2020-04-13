@@ -11,12 +11,26 @@
     <ContentPage.BindingContext>
         <vm:SettingsPageViewModel/>
     </ContentPage.BindingContext>
-    
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Settings and such"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" FontSize="26" />
-        </StackLayout>
-    </ContentPage.Content>
+
+	<Grid>
+	<Grid.RowDefinitions>
+		<RowDefinition Height="*"/>
+		<RowDefinition Height="Auto"/>
+	</Grid.RowDefinitions>
+
+
+		<TableView Intent="Settings" Grid.Row="0">
+			<TableRoot>
+				<TableSection Title="My settings">
+					<SwitchCell Text="Light Theme" On="true"/>
+				</TableSection>
+			</TableRoot>
+		</TableView>
+
+		<Button Text="Log out" Margin="20 ,20,0,20" HeightRequest="50"
+		        VerticalOptions="End" WidthRequest="220" FontSize="16" 
+		        HorizontalOptions="Center" Grid.Row="1">
+		</Button>
+
+	</Grid>
 </ContentPage>

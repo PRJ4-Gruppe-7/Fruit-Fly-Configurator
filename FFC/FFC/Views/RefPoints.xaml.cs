@@ -15,6 +15,7 @@ namespace FFC.Views
     public partial class RefPoints : ContentPage
     {
         RefPointsViewModel vm;
+        Reference tempref = new Reference();
         public RefPoints()
         {
             InitializeComponent();
@@ -31,40 +32,20 @@ namespace FFC.Views
         }
         async void DeleteRef_Clicked(object sender, EventArgs e)
         {
-            //var vm = (RefPointsViewModel)this.BindingContext;
-            //await App.refPointManager.DeleteReferenceAsync(vm.CurrentID);
+            var tempid = vm.CurrentID;
+            string id = tempid.ToString();
+           await App.refPointManager.DeleteReferenceAsync(id);
+        }
 
-            #region Test
-            /*  Test for "Delete" button, where the ref point with ID X will be deleted
-             *  in the database. This can be checked on https://fruitflyapi.azurewebsites.net/index.html
-             *  The ID parameter has to be changed for each time the delete button is pressed, 
-             *  since it will be deleted permanently from the DB. First we check if the ID is in the
-             *  database and print it out in the console. Then we delete it. Afterwards we check again
-             *  if it is in the database, and print it out in the console. 
-             */
+        private void listViewPoints_ItemTapped(object sender, ItemTappedEventArgs e)
+        { 
+            tempref = (e.Item as Reference);
+            vm.CurrentID = tempref.referencepointId;
+        }
 
-            //Coordinate with ID to be deleted (Check wether or not the ID chosen is in the database.
-            //If it is not, an exception will be catched and displayed in the console.
-            string ID = "252";
-
-            //Check for the specific ID and print in console
-            var Points1 = await App.refPointManager.GetSpecificRefPointAsync(ID);
-            Console.WriteLine("{0}, {1}, {2}", Points1.x, Points1.y, Points1.rssI1);
-
-            //Delete the ID
-            await App.refPointManager.DeleteReferenceAsync(ID);
-
-            //Check for the specific ID and print in console
-            try
-            {
-                var Points2 = await App.refPointManager.GetSpecificRefPointAsync(ID);
-                Console.WriteLine("{0}, {1}, {2}", Points2.x, Points2.y, Points2.rssI1);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception message: {0} ", ex.Message);
-            }
-            #endregion
+        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            DisplayAlert("Information", "Upon deletion of a reference point,\nmake sure to update the table", "OK");
         }
     }
 }

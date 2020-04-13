@@ -14,7 +14,9 @@
     <vm:RefPointsViewModel/>
 </ContentPage.BindingContext>
 
-
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Info" IconImageSource="info.png" Clicked="ToolbarItem_Clicked"/>
+	</ContentPage.ToolbarItems>
 
 	<Grid>
 		<Grid.RowDefinitions>
@@ -35,26 +37,10 @@
 		<Button Text="Delete" Margin="0,20,20,20" HeightRequest="50" VerticalOptions="Start"
 				WidthRequest="100" FontSize="16" Grid.Row="0" HorizontalOptions="End" Clicked="DeleteRef_Clicked"/>
 
-		<ListView x:Name="listViewPoints" Grid.Row="1" ItemsSource="{Binding Refs}">
+		<ListView x:Name="listViewPoints" Grid.Row="1" ItemsSource="{Binding Refs}" ItemTapped="listViewPoints_ItemTapped" SelectedItem="{Binding ThisItem}">
 				<ListView.ItemTemplate>
-					<DataTemplate>
-                        <!--<ViewCell>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-
-                                <Label Text="{Binding referencepointId}" Grid.Column="0"/>
-                                <Label Text="{Binding x}" Grid.Column="1"/>
-                                <Label Text="{Binding y}" Grid.Column="2"/>
-                                <Label Text="{Binding rssI1}" Grid.Column="3"/>
-                            </Grid>
-
-                        </ViewCell>-->
-                    <TextCell Text="{Binding referencepointId}" Detail="{Binding detail}" />
+				<DataTemplate>
+					<TextCell Text="{Binding referencepointId}" Detail="{Binding detail}" />
                 </DataTemplate>
 				</ListView.ItemTemplate>
 			</ListView>
