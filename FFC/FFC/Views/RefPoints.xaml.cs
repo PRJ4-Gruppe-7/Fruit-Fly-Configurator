@@ -20,7 +20,7 @@ namespace FFC.Views
             InitializeComponent();
             vm = new RefPointsViewModel();
             vm.GetRefPoints();
-            listViewPoints.ItemsSource = vm.refs;
+            listViewPoints.ItemsSource = vm.Refs;
             this.BindingContext = vm;
         }
 

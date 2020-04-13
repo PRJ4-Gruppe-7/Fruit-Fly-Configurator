@@ -35,7 +35,7 @@
 		<Button Text="Delete" Margin="0,20,20,20" HeightRequest="50" VerticalOptions="Start"
 				WidthRequest="100" FontSize="16" Grid.Row="0" HorizontalOptions="End" Clicked="DeleteRef_Clicked"/>
 
-		<ListView x:Name="listViewPoints" Grid.Row="1" >
+		<ListView x:Name="listViewPoints" Grid.Row="1" ItemsSource="{Binding Refs}">
 				<ListView.ItemTemplate>
 					<DataTemplate>
                         <!--<ViewCell>
