@@ -24,14 +24,33 @@ namespace FFC.ViewModels
         public string XValue
         {
             get { return $"{_xValue}"; }
-            set { _xValue = value.Length > 0 ? Int32.Parse(value) : _xValue; }
+            set { 
+                try
+                {
+                    _xValue = value.Length > 0 ? Int32.Parse(value) : _xValue;
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine($"Exception: {ex}");
+                }
+                
+                }
         }
 
         public int _yValue { get; set; }
         public string YValue
         {
             get { return $"{_yValue}"; }
-            set { _yValue = value.Length > 0 ? Int32.Parse(value) : _yValue; }
+            set {
+                try 
+                {
+                    _yValue = value.Length > 0 ? Int32.Parse(value) : _yValue;
+                }
+                 catch(Exception ex)
+                {
+                    Console.WriteLine($"Exception: {ex}");
+                }
+            }
         }
 
         public int _rssi { get; set; }

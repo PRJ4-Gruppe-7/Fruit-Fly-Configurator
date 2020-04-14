@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:vm="clr-namespace:FFC.ViewModels"
+			 xmlns:local="clr-namespace:FFC.Services"
              xmlns:mo="clr-namespace:FFC.Models;assembly=FFC"
              mc:Ignorable="d"
              x:Class="FFC.Views.SendPage"
@@ -35,14 +36,22 @@
 
         <StackLayout Grid.Row="1" Grid.Column="0">
             <Button Text="X+" Command="{Binding IncrementCommand}" CommandParameter="x"/>
-            <Entry  Text="{Binding XValue}" Placeholder="X" />
+			<Entry  Text="{Binding XValue}" Placeholder="X" Keyboard="Numeric" >
+				<Entry.Behaviors>
+					<local:NumericValidationBehavior />
+				</Entry.Behaviors>
+			</Entry>
             <Button Text="X-" Command="{Binding DecrementXCommand}" CommandParameter="x"/>
         </StackLayout>
 
         <StackLayout Grid.Row="1" Grid.Column="1">
             <Button Text="Y+" Command="{Binding IncrementCommand}" CommandParameter="y"/>
-            <Entry  Text="{Binding YValue}" Placeholder="Y"/>
-            <Button Text="Y-" Command="{Binding DecrementYCommand}" CommandParameter="y"/>
+			<Entry  Text="{Binding YValue}" Placeholder="Y" Keyboard="Numeric">
+				<Entry.Behaviors>
+					<local:NumericValidationBehavior />
+				</Entry.Behaviors>
+			</Entry>
+			<Button Text="Y-" Command="{Binding DecrementYCommand}" CommandParameter="y"/>
         </StackLayout>
 
 		<Button Text="Send reference point" Margin="0,20,0,20" Grid.Row="2" Grid.ColumnSpan="2" 
