@@ -30,11 +30,9 @@ namespace FFC.Views
             vm.GetRefPoints();
             listViewPoints.ItemsSource = vm.Refs;
         }
-        async void DeleteRef_Clicked(object sender, EventArgs e)
+        void DeleteRef_Clicked(object sender, EventArgs e)
         {
-            var tempid = vm.CurrentID;
-            string id = tempid.ToString();
-           await App.refPointManager.DeleteReferenceAsync(id);
+            vm.DeleteRefPoint();
         }
 
         private void listViewPoints_ItemTapped(object sender, ItemTappedEventArgs e)
