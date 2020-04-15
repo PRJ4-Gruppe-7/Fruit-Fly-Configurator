@@ -22,7 +22,7 @@ namespace FFC.Views
 
         private void InfoClicked(object sender, EventArgs e)
         {
-            DisplayAlert("Information", "X/Y unit is meter\n0/0 is the bottom left of any given floor plan", "OK");
+            DisplayAlert("Information", "X/Y unit is meter.\n0/0 is the bottom left of any given floor plan", "OK");
         }
 
         async void Button_Clicked(object sender, EventArgs e)

@@ -46,7 +46,7 @@ namespace FFC.Views
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            DisplayAlert("Information", "Upon deletion of a reference point,\nmake sure to update the table", "OK");
+            DisplayAlert("Information", "Upon deletion of a reference point, make sure to update the table.", "OK");
         }
 
         async void Reset_Clicked(object sender, EventArgs e)
