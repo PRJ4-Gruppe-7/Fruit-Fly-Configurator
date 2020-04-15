@@ -30,9 +30,12 @@ namespace FFC.Views
             vm.GetRefPoints();
             listViewPoints.ItemsSource = vm.Refs;
         }
-        void DeleteRef_Clicked(object sender, EventArgs e)
+        async void DeleteRef_Clicked(object sender, EventArgs e)
         {
-            vm.DeleteRefPoint();
+            bool answer = await DisplayAlert("Warning", $"Are you sure you want to delete reference point {vm.CurrentID} from list? This cannot be undone.", "Yes", "No");
+
+            if (answer)
+                vm.DeleteRefPoint();
         }
 
         private void listViewPoints_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -44,6 +47,14 @@ namespace FFC.Views
         private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
             DisplayAlert("Information", "Upon deletion of a reference point,\nmake sure to update the table", "OK");
+        }
+
+        async void Reset_Clicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Warning", "Are you sure you want to delete all reference points from list? This cannot be undone.", "Yes", "No");
+            
+            if(answer)
+                vm.DeleteAllRefPoints();
         }
     }
 }

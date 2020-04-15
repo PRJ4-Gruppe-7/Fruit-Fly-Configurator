@@ -126,5 +126,22 @@ namespace FFC.Services
             return Item;
         }
             
+
+        public async Task DeleteAllRereferenceAsync()
+        {
+            try
+            {
+                //Deleting
+                var response = await _client.DeleteAsync(ReferenceUrl);
+                response.EnsureSuccessStatusCode();
+
+                string responseBody = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(responseBody);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception message: {0} ", ex.Message);
+            }
+        }
     }
 }

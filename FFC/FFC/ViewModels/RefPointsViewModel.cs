@@ -70,6 +70,11 @@ namespace FFC.ViewModels
             //Refs.RemoveAt(index);
             //NotifyPropertyChanged(nameof(Refs));
         }
+
+        public async void DeleteAllRefPoints()
+        {
+            await App.refPointManager.DeleteAllRefPointsAsync();
+        }
         #endregion
 
     }

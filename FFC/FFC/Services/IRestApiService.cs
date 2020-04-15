@@ -14,5 +14,7 @@ namespace FFC.Services
         Task DeleteReferenceAsync(string id);
 
         Task<Reference> GetSpecificRefID(string id);
+
+        Task DeleteAllRereferenceAsync();
     }
 }

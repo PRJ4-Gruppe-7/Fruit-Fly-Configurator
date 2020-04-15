@@ -24,20 +24,31 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 
-		<Button Text="Get Reference points" Margin="20 ,20,0,20" HeightRequest="50"
-		        VerticalOptions="Start" WidthRequest="220" FontSize="16" 
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="33.33*" />
+			<ColumnDefinition Width="33.33*" />
+			<ColumnDefinition Width="33.33*" />
+		</Grid.ColumnDefinitions>
+		
+		<Button Text="Get List" Margin="20 ,20,0,20" HeightRequest="50"
+		        VerticalOptions="Start" WidthRequest="110" FontSize="16" 
 		        Clicked="GetRefPoints_OnClicked"  HorizontalOptions="Start"
-		        Grid.Row="0">
+		        Grid.Row="0" Grid.Column="0">
 
 			<Button.BindingContext>
 				<vm:RefPointsViewModel/>
 			</Button.BindingContext>
 		</Button>
 		
-		<Button Text="Delete" Margin="0,20,20,20" HeightRequest="50" VerticalOptions="Start"
-				WidthRequest="100" FontSize="16" Grid.Row="0" HorizontalOptions="End" Clicked="DeleteRef_Clicked"/>
+		<Button Text="Delete" Margin="20,20,20,20" HeightRequest="50" VerticalOptions="Start"
+				WidthRequest="110" FontSize="16" Grid.Row="0" HorizontalOptions="End" Clicked="DeleteRef_Clicked"
+				Grid.Column="1"/>
 
-		<ListView x:Name="listViewPoints" Grid.Row="1" ItemsSource="{Binding Refs}" ItemTapped="listViewPoints_ItemTapped" SelectedItem="{Binding ThisItem}">
+		<Button Text="Reset" Margin="0,20,20,20" HeightRequest="50" VerticalOptions="Start"
+				WidthRequest="100" FontSize="16" Grid.Row="0" HorizontalOptions="Center" Clicked="Reset_Clicked"
+				Grid.Column="2"/>
+
+		<ListView x:Name="listViewPoints" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding Refs}" ItemTapped="listViewPoints_ItemTapped" SelectedItem="{Binding ThisItem}">
 				<ListView.ItemTemplate>
 				<DataTemplate>
 					<TextCell Text="{Binding referencepointId}" Detail="{Binding detail}" />
