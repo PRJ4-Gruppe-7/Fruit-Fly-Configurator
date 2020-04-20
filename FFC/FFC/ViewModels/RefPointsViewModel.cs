@@ -74,8 +74,10 @@ namespace FFC.ViewModels
         public async void DeleteAllRefPoints()
         {
             await App.refPointManager.DeleteAllRefPointsAsync();
+
+            //Reseeding ID-count on deletion
+            await App.refPointManager.PutRefPointAsync();
         }
         #endregion
-
     }
 }

@@ -5,6 +5,9 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
+/*
+ * https://docs.microsoft.com/en-us/dotnet/framework/network-programming/asynchronous-client-socket-example
+ */
 namespace FFC.Services
 {
     public class StateObject

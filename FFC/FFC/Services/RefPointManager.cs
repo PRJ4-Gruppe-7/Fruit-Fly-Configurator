@@ -45,5 +45,10 @@ namespace FFC.Services
         {
             return restApiService.DeleteAllRereferenceAsync();
         }
+
+        public Task PutRefPointAsync()
+        {
+            return restApiService.PutReferenceAsync();
+        }
     }
 }

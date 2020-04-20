@@ -22,6 +22,8 @@ namespace FFC.Services
         public static string ApiKey = "829320-adajdasd-12vasdas-baslk3";
         //ReferenceURL used as the combined url
         public static string ReferenceUrl = BaseAddress + "/api/Referencepoint";
+
+        public static string TableName = "?tablename=Referencepoints";
         
         public ObservableCollection<Reference> Items { get; private set; }
         public Reference Item { get; private set; }
@@ -133,6 +135,22 @@ namespace FFC.Services
             {
                 //Deleting
                 var response = await _client.DeleteAsync(ReferenceUrl);
+                response.EnsureSuccessStatusCode();
+
+                string responseBody = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(responseBody);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception message: {0} ", ex.Message);
+            }
+        }
+
+        public async Task PutReferenceAsync()
+        {
+            try
+            {
+                var response = await _client.PutAsync(ReferenceUrl+TableName, null);
                 response.EnsureSuccessStatusCode();
 
                 string responseBody = await response.Content.ReadAsStringAsync();
