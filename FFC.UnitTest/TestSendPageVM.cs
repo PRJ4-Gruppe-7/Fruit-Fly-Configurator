@@ -4,33 +4,34 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using FFC.Models;
 using FFC.Services;
+using FFC.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NUnit.Framework;
+using Assert = NUnit.Framework.Assert;
 
 namespace FFC.UnitTest
 {
     [TestFixture]
-    public class TestRestApiService
+    public class TestSendPageVM
     {
-        private IRestApiService _uut;
-        private Reference _testObject;
+        private SendPageViewModel _uut;
 
         [SetUp]
         public void Setup()
         {
-            _uut = new RestApiService();
-            _testObject = new Reference();
+            _uut = new SendPageViewModel();
         }
 
-        [TestCase(0,0,0)]
-        public async Task PostReferenceAsync_ValidContent_PostingSucceeded(int x, int y, int rssi1)
+        [TestCase("0")]
+        [TestCase("100")]
+        [TestCase("1000")]
+        [TestCase("10000")]
+        [TestCase("32767")]
+        public void XValue_ValidValue_Succes(string value)
         {
-            _testObject.x = x;
-            _testObject.y = y;
-            _testObject.rssI1 = rssi1;
-
-            await _uut.PostReferenceAsync(_testObject);
+            _uut.XValue = value;
+            Assert.AreEqual(_uut._xValue, 921);
         }
     }
 }
