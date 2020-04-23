@@ -9,6 +9,7 @@ using System.Xml.Schema;
 using FFC.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Net.NetworkInformation;
 
 namespace FFC.Views
 {
@@ -17,6 +18,7 @@ namespace FFC.Views
     {
         public SendPage()
         {
+
             InitializeComponent();
         }
 
@@ -27,13 +29,18 @@ namespace FFC.Views
 
         async void Button_Clicked(object sender, EventArgs e)
         {
-            //StartClient();
+            /*
+             *      Connecting to sniffer and receiving rssi value for this device
+             */
+
+            //var tempRssi = AsynchronousClient.StartClient();
+
             var spvm = (SendPageViewModel)this.BindingContext;
             var item = new Reference();
 
             item.x = Int32.Parse(spvm.XValue);
             item.y = Int32.Parse(spvm.YValue);
-            item.rssI1 = Int32.Parse(spvm.RSSIValue);
+            item.rssI1 = Int32.Parse(spvm.RSSIValue); //Comment in tempRssi and set as parameter for this function
 
             await App.refPointManager.PostRefPointAsync(item);
             await Navigation.PopAsync();
