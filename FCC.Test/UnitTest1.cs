@@ -19,13 +19,22 @@ namespace FCC.Test.ViewModelsTest
         [TestCase("100")]
         [TestCase("1000")]
         [TestCase("10000")]
-        [TestCase("32767")]
+        [TestCase("2147483647")]
         public void XValue_ValidValue_Succes(string value)
         {
             _uut.XValue = value;
-            Assert.AreEqual(_uut._xValue, Int32.Parse(value));
+            Assert.AreEqual(Int32.Parse(value), _uut._xValue);
         }
 
-
+        [TestCase("-1")]
+        [TestCase("2147483649")]
+        [TestCase("-2147483649")]
+        [TestCase("test")]
+        [TestCase("t232")]
+        public void XValue_InvalidValue_Fail(string value)
+        {
+            _uut.XValue = value;
+            Assert.AreEqual(0, _uut._xValue);
+        }
     }
 }
