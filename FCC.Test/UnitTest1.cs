@@ -26,6 +26,6 @@ namespace FCC.Test.ViewModelsTest
             Assert.AreEqual(_uut._xValue, Int32.Parse(value));
         }
 
-        
+
     }
 }
