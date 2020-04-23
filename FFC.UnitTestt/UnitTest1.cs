@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using FFC.Models;
-using FFC.Services;
-using FFC.ViewModels;
+﻿using FFC.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
-using NUnit.Framework;  
-using Assert = NUnit.Framework.Assert;
+using NUnit.Framework;
 
 namespace FFC.UnitTest
 {
@@ -31,7 +23,7 @@ namespace FFC.UnitTest
         public void XValue_ValidValue_Succes(string value)
         {
             _uut.XValue = value;
-            Assert.AreEqual(_uut._xValue, 921);
+            NUnit.Framework.Assert.AreEqual(_uut._xValue, 921);
         }
     }
 }

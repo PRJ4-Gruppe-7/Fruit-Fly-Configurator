@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using FFC.Models;
-using FFC.Services;
+using NUnit.Framework;
 using FFC.ViewModels;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
-using NUnit.Framework;  
-using Assert = NUnit.Framework.Assert;
+using System;
 
-namespace FFC.UnitTest
+namespace FCC.Test.ViewModelsTest
 {
     [TestFixture]
     public class TestSendPageVM
@@ -31,7 +23,7 @@ namespace FFC.UnitTest
         public void XValue_ValidValue_Succes(string value)
         {
             _uut.XValue = value;
-            Assert.AreEqual(_uut._xValue, 921);
+            Assert.AreEqual(_uut._xValue, Int32.Parse(value));
         }
     }
 }
