@@ -74,10 +74,10 @@ namespace FCC.Test.ViewModelsTest
         ////// Testing RSSIValue/_rssi ////////
         /////////////////////////////////////
 
+        [TestCase("-2147483647")]
+        [TestCase("-100")]
         [TestCase("0")]
         [TestCase("100")]
-        [TestCase("1000")]
-        [TestCase("10000")]
         [TestCase("2147483647")]
         public void RSSIValue_ValidValue_Succes(string value)
         {
@@ -85,7 +85,6 @@ namespace FCC.Test.ViewModelsTest
             Assert.AreEqual(Int32.Parse(value), _uut._rssi);
         }
 
-        [TestCase("-1")]
         [TestCase("2147483649")]
         [TestCase("-2147483649")]
         [TestCase("test")]
@@ -101,15 +100,69 @@ namespace FCC.Test.ViewModelsTest
         #region Commands
 
         ///////////////////////////////////////
-        ////// Testing XValue/_xValue ////////
+        ////// Testing IncrementCommand //////
         /////////////////////////////////////
 
-        [Test]
-        public void IncrementCommand_X_ValidValue_Succes()
+        [TestCase(0)]
+        [TestCase(100)]
+        [TestCase(1000)]
+        [TestCase(10000)]
+        public void IncrementCommand_x_ValidValue_Succes(int value)
         {
-            for(int i = 0; i < 10; i++)
-                _uut.IncrementCommand.Execute("X");
-            Assert.AreEqual(10, _uut._xValue);
+            for(int i = 0; i < value; i++)
+                _uut.IncrementCommand.Execute("x");
+            Assert.AreEqual(value, _uut._xValue);
+        }
+
+        [TestCase(0)]
+        [TestCase(100)]
+        [TestCase(1000)]
+        [TestCase(10000)]
+        public void IncrementCommand_y_ValidValue_Succes(int value)
+        {
+            for (int i = 0; i < value; i++)
+                _uut.IncrementCommand.Execute("y");
+            Assert.AreEqual(value, _uut._yValue);
+        }
+
+        ///////////////////////////////////////
+        //// DecrementXCommandCanExecute /////
+        /////////////////////////////////////
+
+        [TestCase(1)]
+        [TestCase(100)]
+        [TestCase(1000)]
+        public void DecrementXCommandCanExecute_Succes(int value)
+        {
+            _uut.XValue = value.ToString();
+            Assert.IsTrue(_uut.DecrementXCommand.CanExecute(null));
+        }
+
+        [TestCase(0)]
+        public void DecrementXCommandCanExecute_Fail(int value)
+        {
+            _uut.XValue = value.ToString();
+            Assert.IsFalse(_uut.DecrementXCommand.CanExecute(null));
+        }
+
+        ///////////////////////////////////////
+        //// DecrementYCommandCanExecute /////
+        /////////////////////////////////////
+
+        [TestCase(1)]
+        [TestCase(100)]
+        [TestCase(1000)]
+        public void DecrementYCommandCanExecute_Succes(int value)
+        {
+            _uut.YValue = value.ToString();
+            Assert.IsTrue(_uut.DecrementYCommand.CanExecute(null));
+        }
+
+        [TestCase(0)]
+        public void DecrementYCommandCanExecute_Fail(int value)
+        {
+            _uut.YValue = value.ToString();
+            Assert.IsFalse(_uut.DecrementYCommand.CanExecute(null));
         }
 
         #endregion

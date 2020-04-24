@@ -15,7 +15,6 @@ namespace FFC.ViewModels
         public SendPageViewModel()
         {
             Title = "Send Reference Points";
-            IncrementCommand = new Command<string>(Increment);
         }
 
         #region Properties
@@ -63,28 +62,18 @@ namespace FFC.ViewModels
                 catch (Exception ex) { Console.WriteLine($"Exception: {ex}"); }
             }
         }
-        
+
         #endregion
 
         #region Commands
 
-        public ICommand IncrementCommand { get; }
+        ICommand _incrementCommand;
+        public ICommand IncrementCommand 
+        { 
+            get { return _incrementCommand ?? (_incrementCommand = new DelegateCommand<string>(IncrementCommandExecute)); } 
+        }
         
-        ICommand _decrementXCommand;
-        public ICommand DecrementXCommand => _decrementXCommand ?? (_decrementXCommand = 
-            new DelegateCommand(DecrementX, DecrementXCommandCanExecute).ObservesProperty(() => XValue));
-
-        ICommand _decrementYCommand;
-        public ICommand DecrementYCommand => _decrementYCommand ?? (_decrementYCommand =
-            new DelegateCommand(DecrementY, DecrementYCommandCanExecute).ObservesProperty(() => YValue));
-
-        public ICommand SendRefCommand { get; }
-
-        #endregion
-
-        #region Methods
-
-        void Increment(string value)
+        void IncrementCommandExecute(string value)
         {
             if (value == "x")
             {
@@ -99,24 +88,35 @@ namespace FFC.ViewModels
             }
         }
 
-        void DecrementX()
+        ICommand _decrementXCommand;
+        public ICommand DecrementXCommand => _decrementXCommand ?? (_decrementXCommand = 
+            new DelegateCommand(DecrementXCommandExecute, DecrementXCommandCanExecute).ObservesProperty(() => XValue));
+
+        bool DecrementXCommandCanExecute()
+        { return _xValue > 0 ? true : false; }
+
+
+        void DecrementXCommandExecute()
         {
             _xValue--;
             NotifyPropertyChanged(nameof(XValue));
         }
 
-        bool DecrementXCommandCanExecute()
-        { return _xValue > 0 ? true : false; }
+        ICommand _decrementYCommand;
+        public ICommand DecrementYCommand => _decrementYCommand ?? (_decrementYCommand =
+            new DelegateCommand(DecrementYCommandExecute, DecrementYCommandCanExecute).ObservesProperty(() => YValue));
 
-        void DecrementY()
+        bool DecrementYCommandCanExecute()
+        { return _yValue > 0 ? true : false; }
+
+        void DecrementYCommandExecute()
         {
             _yValue--;
             NotifyPropertyChanged(nameof(YValue));
         }
 
-        bool DecrementYCommandCanExecute()
-        { return _yValue > 0 ? true : false; }
-
+        public ICommand SendRefCommand { get; }
+        
         #endregion
     }
 }
