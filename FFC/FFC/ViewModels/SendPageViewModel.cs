@@ -115,8 +115,23 @@ namespace FFC.ViewModels
             NotifyPropertyChanged(nameof(YValue));
         }
 
-        public ICommand SendRefCommand { get; }
-        
+        ICommand _sendRefCommand;
+        public ICommand SendRefCommand
+        {
+            get { return _sendRefCommand ?? (_sendRefCommand = new DelegateCommand(SendRefCommandExecute)); }
+        }
+
+        async void SendRefCommandExecute()
+        {
+            var item = new Reference();
+
+            item.x = Int32.Parse(XValue);
+            item.y = Int32.Parse(YValue);
+            item.rssI1 = Int32.Parse(RSSIValue); //Comment in tempRssi and set as parameter for this function
+
+            await App.refPointManager.PostRefPointAsync(item);
+            //await Navigation.PopAsync();
+        }
         #endregion
     }
 }
