@@ -57,7 +57,11 @@ namespace FFC.ViewModels
         public string RSSIValue
         {
             get { return $"{_rssi}"; }
-            set { _rssi = Int32.Parse(value); }
+            set
+            {
+                try { _rssi = Int32.Parse(value); }
+                catch (Exception ex) { Console.WriteLine($"Exception: {ex}"); }
+            }
         }
         
         #endregion
@@ -112,7 +116,6 @@ namespace FFC.ViewModels
 
         bool DecrementYCommandCanExecute()
         { return _yValue > 0 ? true : false; }
-
 
         #endregion
     }
