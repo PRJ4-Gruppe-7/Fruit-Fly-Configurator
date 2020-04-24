@@ -18,7 +18,6 @@ namespace FFC.Views
     {
         public SendPage()
         {
-
             InitializeComponent();
         }
 
