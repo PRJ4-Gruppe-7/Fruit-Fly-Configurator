@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 using FFC.Models;
 using System.ComponentModel;
+using System.Linq;
+using System.Net.NetworkInformation;
 using Xamarin.Forms;
 using System.Runtime.CompilerServices;
 using FFC.Services;
@@ -12,6 +15,32 @@ namespace FFC.ViewModels
 {
     public class SendPageViewModel : BaseViewModel
     {
+        #region WebSocketConfig
+
+        //MAC Address for this device
+        private static string _macAddress = NetworkInterface.GetAllNetworkInterfaces()
+            .Where(nic => nic.OperationalStatus == OperationalStatus.Up)
+            .Select(nic => nic.GetPhysicalAddress().ToString()).FirstOrDefault();
+
+        private static int Sniffer_Count = 3;
+
+        private static SnifferSource[] sources =
+        {
+            new SnifferSource {name = "SNF1", hostname = "", numericHostName = "123.456.789.123", port = 27015},
+        };
+
+        ASyncSocket[] sockets = new ASyncSocket[Sniffer_Count];
+        List<List<int>> RSSIList = new List<List<int>>();
+        IDictionary<string, List<string>> dict = new Dictionary<string, List<string>>();
+
+        private static Random rng = new Random(Guid.NewGuid().GetHashCode());
+        private static string RandomRSSIString()
+        {
+            return String.Format("7.192.163.51:{0}, 199.187.194.244:{1}, 6.38.202.48:{2}, 2.55.101.44:{3}", rng.Next(0, 100), rng.Next(0, 100), rng.Next(0, 100), rng.Next(0,100));
+        }
+        #endregion
+
+
         public SendPageViewModel()
         {
             Title = "Send Reference Points";
@@ -123,14 +152,66 @@ namespace FFC.ViewModels
 
         async void SendRefCommandExecute()
         {
-            var item = new Reference();
+            for (int i = 0; i < Sniffer_Count; i++)
+            {
+                ASyncSocket s = new ASyncSocket(sources[0].numericHostName, sources[0].port);
+                sockets[i] = s;
+                //s.StartClient();
+            }
 
-            item.x = Int32.Parse(XValue);
-            item.y = Int32.Parse(YValue);
-            item.rssI1 = Int32.Parse(RSSIValue); //Comment in tempRssi and set as parameter for this function
+            for (int i = 0; i < Sniffer_Count; i++)
+                {
+                    //sockets[i].Send("RETR test.txt");
+                    //sockets[i].Receive();
 
-            await App.refPointManager.PostRefPointAsync(item);
-            //await Navigation.PopAsync();
+                    //For testing purpose. Fills response for sockets.
+                    sockets[i].response = RandomRSSIString().Split(',');
+
+                    for (int j = 0; j < sockets[i].response.Length; j++)
+                    {
+                        var thisItem = sockets[i].response[j].Split(':');
+                        try
+                        {
+                            // Try adding the ip as a key, into the dictionary.
+                            // If successful, create the list containing the received signal strength values
+                            dict.Add(thisItem[0], new List<string>() { thisItem[1] });
+                        }
+                        catch (ArgumentException)
+                        {
+                            // If the key already exist in the dictionary, we add the new rssi value
+                            // to the list linked to that key.
+                            dict[thisItem[0]].Add(thisItem[1]);
+                        }
+                    }
+                }
+
+
+            // Make the list of RSSI values.
+            foreach (KeyValuePair<string, List<string>> p in dict)
+            {
+                RSSIList.Add(p.Value.Select(int.Parse).ToList());
+            }
+
+            foreach (var item in RSSIList)
+            {
+                Console.WriteLine("Item {0}",item);
+                foreach (var i in item)
+                {
+                    Console.Write("{0},", i);
+                }
+                Console.WriteLine("");
+            }
+
+            RSSIList.Clear();
+            dict.Clear();
+
+            //var item = new Reference();
+
+            //item.x = Int32.Parse(XValue);
+            //item.y = Int32.Parse(YValue);
+            //item.rssI1 = Int32.Parse(RSSIValue); 
+
+            //await App.refPointManager.PostRefPointAsync(item);
         }
         #endregion
     }
