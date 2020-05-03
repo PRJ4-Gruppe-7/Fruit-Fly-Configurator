@@ -17,26 +17,27 @@ namespace FFC.ViewModels
     {
         #region WebSocketConfig
 
-        //MAC Address for this device
-        private static string _macAddress = NetworkInterface.GetAllNetworkInterfaces()
-            .Where(nic => nic.OperationalStatus == OperationalStatus.Up)
-            .Select(nic => nic.GetPhysicalAddress().ToString()).FirstOrDefault();
+        string _mac;
 
+        private static int MEAN = 5;
         private static int Sniffer_Count = 3;
+        private static Random rng = new Random(Guid.NewGuid().GetHashCode());
+
+        List<List<int>> average = new List<List<int>>();
+        List<int> meanlist = new List<int> { 0, 0, 0 };
+        IDictionary<string, List<string>> dict = new Dictionary<string, List<string>>();
+
+        ASyncSocket[] sockets = new ASyncSocket[Sniffer_Count];
+
 
         private static SnifferSource[] sources =
         {
             new SnifferSource {name = "SNF1", hostname = "", numericHostName = "123.456.789.123", port = 27015},
         };
 
-        ASyncSocket[] sockets = new ASyncSocket[Sniffer_Count];
-        List<List<int>> RSSIList = new List<List<int>>();
-        IDictionary<string, List<string>> dict = new Dictionary<string, List<string>>();
-
-        private static Random rng = new Random(Guid.NewGuid().GetHashCode());
         private static string RandomRSSIString()
         {
-            return String.Format("7.192.163.51:{0}, 199.187.194.244:{1}, 6.38.202.48:{2}, 2.55.101.44:{3}", rng.Next(0, 100), rng.Next(0, 100), rng.Next(0, 100), rng.Next(0,100));
+            return String.Format("76:90:38:19:D5:04;{0}, 199.187.194.244;{1}, 6.38.202.48;{2},7.192.163.51;{3}", rng.Next(0, 100), rng.Next(0, 100), rng.Next(0, 100), rng.Next(0,100));
         }
         #endregion
 
@@ -152,6 +153,8 @@ namespace FFC.ViewModels
 
         async void SendRefCommandExecute()
         {
+
+
             for (int i = 0; i < Sniffer_Count; i++)
             {
                 ASyncSocket s = new ASyncSocket(sources[0].numericHostName, sources[0].port);
@@ -159,59 +162,70 @@ namespace FFC.ViewModels
                 //s.StartClient();
             }
 
-            for (int i = 0; i < Sniffer_Count; i++)
+            for (int k = 0; k < MEAN; k++)
+            {
+                for (int i = 0; i < Sniffer_Count; i++)
                 {
                     //sockets[i].Send("RETR test.txt");
                     //sockets[i].Receive();
+
+
+                    //sockets[i].response.Split(',');
 
                     //For testing purpose. Fills response for sockets.
                     sockets[i].response = RandomRSSIString().Split(',');
 
                     for (int j = 0; j < sockets[i].response.Length; j++)
                     {
-                        var thisItem = sockets[i].response[j].Split(':');
+                        var thisItem = sockets[i].response[j].Split(';');
                         try
                         {
-                            // Try adding the ip as a key, into the dictionary.
-                            // If successful, create the list containing the received signal strength values
                             dict.Add(thisItem[0], new List<string>() { thisItem[1] });
                         }
                         catch (ArgumentException)
                         {
-                            // If the key already exist in the dictionary, we add the new rssi value
-                            // to the list linked to that key.
                             dict[thisItem[0]].Add(thisItem[1]);
                         }
                     }
                 }
 
-
-            // Make the list of RSSI values.
-            foreach (KeyValuePair<string, List<string>> p in dict)
-            {
-                RSSIList.Add(p.Value.Select(int.Parse).ToList());
-            }
-
-            foreach (var item in RSSIList)
-            {
-                Console.WriteLine("Item {0}",item);
-                foreach (var i in item)
+                foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
                 {
-                    Console.Write("{0},", i);
+                    _mac = BitConverter.ToString(nic.GetPhysicalAddress().GetAddressBytes()).Replace('-', ':');
+
+                    Console.WriteLine($"{_mac}");
+                    break;
                 }
-                Console.WriteLine("");
+
+                average.Add(dict[_mac].Select(int.Parse).ToList());
+                dict.Clear();
             }
 
-            RSSIList.Clear();
-            dict.Clear();
+            //Extracts values from nested average list for each sniffer 
+            //to accumulate sniffer values and in the end divide by values collected
+            if (average.Count == MEAN)
+            {
+                foreach (var l in average)
+                {
+                    for (int i = 0; i < l.Count; i++)
+                    {
+                        meanlist[i] += l[i];
+                    }
+                }
+            }
 
-            //var item = new Reference();
+            var refItem = new Reference();
 
-            //item.x = Int32.Parse(XValue);
-            //item.y = Int32.Parse(YValue);
-            //item.rssI1 = Int32.Parse(RSSIValue); 
+            refItem.rssI1 = meanlist[0] / MEAN;
+            refItem.rssI2 = meanlist[1] / MEAN;
+            refItem.rssI3 = meanlist[2] / MEAN;
+            refItem.x = Int32.Parse(XValue);
+            refItem.y = Int32.Parse(YValue);
 
-            //await App.refPointManager.PostRefPointAsync(item);
+            average.Clear();
+            meanlist.Clear();
+
+            //await App.refPointManager.PostRefPointAsync(refItem);
         }
         #endregion
     }
