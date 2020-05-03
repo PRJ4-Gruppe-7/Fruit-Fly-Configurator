@@ -9,6 +9,6 @@ namespace FFC.Services.WebSocketService
         void StartClient();
         void Receive();
         void Send(String data);
-        void ShutdownClient(IAsyncResult ar);
+        void ShutdownClient();
     }
 }

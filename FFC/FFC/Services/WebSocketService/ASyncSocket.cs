@@ -168,7 +168,7 @@ namespace FFC.Services
                 }
             }
 
-            public void ShutdownClient(IAsyncResult ar)
+            public void ShutdownClient()
             {
                 client.Shutdown(SocketShutdown.Both);
                 client.Close();
