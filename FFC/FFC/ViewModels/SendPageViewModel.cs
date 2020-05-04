@@ -55,16 +55,6 @@ namespace FFC.ViewModels
             }
         }
 
-        public int _rssi { get; set; }
-        public string RSSIValue
-        {
-            get { return $"{_rssi}"; }
-            set
-            {
-                try { _rssi = Int32.Parse(value); }
-                catch (Exception ex) { Console.WriteLine($"Exception: {ex}"); }
-            }
-        }
 
         #endregion
 
@@ -124,15 +114,15 @@ namespace FFC.ViewModels
             get { return _sendRefCommand ?? (_sendRefCommand = new DelegateCommand(SendRefCommandExecute)); }
         }
 
-        async void SendRefCommandExecute()
+        public async void SendRefCommandExecute()
         {
             Reference refItem = new Reference();
 
             App.webSocketManager.InitiateClient();
             App.webSocketManager.ReceiveAndProcessResponse();
             refItem = App.webSocketManager.CreateDataInstance();
-            refItem.x = Int32.Parse(XValue);
-            refItem.y = Int32.Parse(YValue);
+            refItem.x = _xValue;
+            refItem.y = _yValue;
             await App.refPointManager.PostRefPointAsync(refItem);
         }
         #endregion
