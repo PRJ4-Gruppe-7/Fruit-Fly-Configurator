@@ -85,6 +85,12 @@ namespace FFC.Services.WebSocketService
                 dict.Clear();
             }
 
+            for (int i = 0; i < meanlist.Count; i++)
+            {
+                meanlist[i] = 0;
+            }
+            
+
             //Extracts values from nested average list for each sniffer 
             //to accumulate sniffer values and in the end divide by values collected
             if (average.Count == MEAN)
@@ -109,7 +115,7 @@ namespace FFC.Services.WebSocketService
                 rssI3 = meanlist[2] / MEAN
             };
             
-            meanlist.Select(x => x = 0);
+            //meanlist.Select(x => x = 0).ToList();
 
             return refItem;
         }

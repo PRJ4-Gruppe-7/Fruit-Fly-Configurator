@@ -18,7 +18,7 @@
 		<ToolbarItem Text="Info" IconImageSource="info.png" Clicked="ToolbarItem_Clicked"/>
 	</ContentPage.ToolbarItems>
 
-	<Grid>
+	<Grid x:Name="Gridname">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="100"/>
 			<RowDefinition Height="*"/>
@@ -48,17 +48,19 @@
 				WidthRequest="100" FontSize="16" Grid.Row="0" HorizontalOptions="Center" Clicked="Reset_Clicked"
 				Grid.Column="2"/>
 
-		<ListView x:Name="listViewPoints" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding Refs}" ItemTapped="listViewPoints_ItemTapped" SelectedItem="{Binding ThisItem}">
+		<ListView x:Name="listViewPoints" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding Refs}" 
+				  ItemTapped="listViewPoints_ItemTapped" SelectedItem="{Binding ThisItem}" >
 				<ListView.ItemTemplate>
 				<DataTemplate>
-					<TextCell Text="{Binding referencepointId}" Detail="{Binding detail}" />
+					<TextCell Text="{Binding IDstring}" Detail="{Binding detail}" />
                 </DataTemplate>
 				</ListView.ItemTemplate>
 			</ListView>
 
-		
 
-			
+
+
+
 
 	</Grid>
 	</ContentPage>
