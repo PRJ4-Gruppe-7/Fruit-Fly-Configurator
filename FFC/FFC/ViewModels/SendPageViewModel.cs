@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using FFC.Services;
 using Prism.Commands;
 using Prism.Navigation.Xaml;
+using FFC.Views;
 
 namespace FFC.ViewModels
 {
@@ -18,28 +19,31 @@ namespace FFC.ViewModels
         public SendPageViewModel()
         {
             Title = "Send Reference Points";
+            _randomNumber = new Random().Next(0, 100000) ;
         }
 
         #region Properties
 
-        public int _xValue { get; set; }
+        private int _randomNumber;
+
+        private int _xValue { get; set; }
         public string XValue
         {
             get { return $"{_xValue}"; }
-            set { 
+            set
+            {
                 try
                 {
                     _xValue = Int32.Parse(value) >= 0 ? Int32.Parse(value) : _xValue;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine($"Exception: {ex}");
                 }
-                
-                }
+            }
         }
 
-        public int _yValue { get; set; }
+        private int _yValue { get; set; }
         public string YValue
         {
             get { return $"{_yValue}"; }
@@ -52,17 +56,6 @@ namespace FFC.ViewModels
                 {
                     Console.WriteLine($"Exception: {ex}");
                 }
-            }
-        }
-
-        public int _rssi { get; set; }
-        public string RSSIValue
-        {
-            get { return $"{_rssi}"; }
-            set
-            {
-                try { _rssi = Int32.Parse(value); }
-                catch (Exception ex) { Console.WriteLine($"Exception: {ex}"); }
             }
         }
 
@@ -128,13 +121,23 @@ namespace FFC.ViewModels
         {
             Reference refItem = new Reference();
 
-            App.webSocketManager.InitiateClient();
-            App.webSocketManager.ReceiveAndProcessResponse();
-            refItem = App.webSocketManager.CreateDataInstance();
-            refItem.x = Int32.Parse(XValue);
-            refItem.y = Int32.Parse(YValue);
+            //App.webSocketManager.InitiateClient();
+            //App.webSocketManager.ReceiveAndProcessResponse();
+            //refItem = App.webSocketManager.CreateDataInstance();
+            refItem.rssI1 = 30;
+            BindXYvalues(refItem);
             await App.refPointManager.PostRefPointAsync(refItem);
         }
+        #endregion
+
+        #region Methods
+
+        void BindXYvalues(Reference _ref)
+        {
+            _ref.x = Int32.Parse(XValue);
+            _ref.y = _yValue;
+        }
+
         #endregion
     }
 }

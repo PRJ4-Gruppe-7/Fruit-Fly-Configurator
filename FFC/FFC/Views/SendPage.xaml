@@ -31,7 +31,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="Plot Away!"
+        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding XValue}"
                HorizontalTextAlignment="Center" VerticalOptions="Center"/>
 
         <StackLayout Grid.Row="1" Grid.Column="0">
@@ -46,7 +46,7 @@
 
         <StackLayout Grid.Row="1" Grid.Column="1">
             <Button Text="Y+" Command="{Binding IncrementCommand}" CommandParameter="y"/>
-			<Entry  Text="{Binding YValue}" Placeholder="Y" Keyboard="Numeric">
+			<Entry  Text="{Binding YValue}" Placeholder="Y" >
 				<Entry.Behaviors>
 					<local:NumericValidationBehavior />
 				</Entry.Behaviors>
@@ -56,9 +56,6 @@
 
         <Button Text="Send reference point" Margin="0,20,0,20" Grid.Row="2" Grid.ColumnSpan="2" 
                 VerticalOptions="Center" WidthRequest="345" FontSize="16" Command="{Binding SendRefCommand}">
-            <Button.BindingContext>
-				<vm:SendPageViewModel/>
-			</Button.BindingContext>
         </Button>
     </Grid>
 </ContentPage>
