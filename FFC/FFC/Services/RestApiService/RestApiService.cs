@@ -22,7 +22,7 @@ namespace FFC.Services
         public static string ApiKey = "829320-adajdasd-12vasdas-baslk3";
         //ReferenceURL used as the combined url
         public static string ReferenceUrl = BaseAddress + "/api/Referencepoint";
-
+        //Table name for PUT
         public static string TableName = "?tablename=Referencepoints";
         
         public ObservableCollection<Reference> Items { get; private set; }
@@ -35,7 +35,6 @@ namespace FFC.Services
             _client.DefaultRequestHeaders.Add("ApiKey", ApiKey);
         }
 
-        //Posts a reference point
         public async Task PostReferenceAsync(Reference item)
         {
             string jsonString = "{\"referencepointId\":0,\"category\":0,\"rssI1\":0," +
@@ -69,8 +68,7 @@ namespace FFC.Services
                 Console.WriteLine("Exception message: {0} ", ex.Message);
             }
         }
-
-        //Retrieves all prior dialed reference points 
+ 
         public async Task<ObservableCollection<Reference>> RefreshDataAsync()
         {
             Items = new ObservableCollection<Reference>();
@@ -93,7 +91,6 @@ namespace FFC.Services
             return Items;
         }
 
-        //Deletes reference point with given ReferencePointID (Unique)
         public async Task DeleteReferenceAsync(string id)
         {
             try
@@ -131,7 +128,6 @@ namespace FFC.Services
             return Item;
         }
             
-
         public async Task DeleteAllRereferenceAsync()
         {
             try

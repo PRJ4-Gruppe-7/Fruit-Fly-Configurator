@@ -7,6 +7,7 @@ using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 
 namespace FFC.Services
 {
+    //Validates input in entries, to make sure only digits are allowed
     public class NumericValidationBehavior : Behavior<Xamarin.Forms.Entry>
     {
 

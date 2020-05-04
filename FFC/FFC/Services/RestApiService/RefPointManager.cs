@@ -46,6 +46,7 @@ namespace FFC.Services
             return restApiService.DeleteAllRereferenceAsync();
         }
 
+        //Reseeds table at complete deletion
         public Task PutRefPointAsync()
         {
             return restApiService.PutReferenceAsync();

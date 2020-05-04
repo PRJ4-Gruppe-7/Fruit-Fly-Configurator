@@ -31,6 +31,8 @@ namespace FFC.ViewModels
             {
                 try
                 {
+                    //Validates entry to make sure it isn't negative or extends 
+                    //maximum value of an integer
                     _xValue = Int32.Parse(value) >= 0 && Int32.Parse(value) < Int32.MaxValue ? Int32.Parse(value) : _xValue;
                 }
                 catch (Exception ex)
@@ -47,6 +49,8 @@ namespace FFC.ViewModels
             set {
                 try 
                 {
+                    //Validates entry to make sure it isn't negative or extends 
+                    //maximum value of an integer
                     _yValue = Int32.Parse(value) >= 0 && Int32.Parse(value) < Int32.MaxValue ? Int32.Parse(value) : _yValue;
                 }
                  catch(Exception ex)
