@@ -19,12 +19,9 @@ namespace FFC.ViewModels
         public SendPageViewModel()
         {
             Title = "Send Reference Points";
-            _randomNumber = new Random().Next(0, 100000) ;
         }
 
         #region Properties
-
-        private int _randomNumber;
 
         private int _xValue { get; set; }
         public string XValue
