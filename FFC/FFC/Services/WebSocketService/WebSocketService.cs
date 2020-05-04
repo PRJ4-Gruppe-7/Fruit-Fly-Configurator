@@ -31,7 +31,7 @@ namespace FFC.Services.WebSocketService
 
         private static string RandomRSSIString()
         {
-            return String.Format("76:90:38:19:D5:04;{0}, 199.187.194.244;{1}, 6.38.202.48;{2},7.192.163.51;{3}", rng.Next(0, 100), rng.Next(0, 100), rng.Next(0, 100), rng.Next(0, 100));
+            return String.Format("6.38.202.48;{0},199.187.194.244;{1},76:90:38:19:D5:04;{2},7.192.163.51;{3}", rng.Next(0, 100), rng.Next(0, 100), rng.Next(0, 100), rng.Next(0, 100));
         }
 
         public WebSocketService(IASyncSocket socket)
@@ -61,7 +61,7 @@ namespace FFC.Services.WebSocketService
 
                     //sockets[i].response.Split(',');
 
-                    //For testing purpose. Fills response for sockets.
+                    //For testing purpose. Fills response for sockets. Delete later.
                     sockets[i].response = RandomRSSIString().Split(',');
 
                     for (int j = 0; j < sockets[i].response.Length; j++)
@@ -80,16 +80,7 @@ namespace FFC.Services.WebSocketService
                     //sockets[i].ShutdownClient();
                 }
 
-                
-
-                foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
-                {
-                    _mac = BitConverter.ToString(nic.GetPhysicalAddress().GetAddressBytes()).Replace('-', ':');
-
-                    Console.WriteLine($"{_mac}");
-                    break;
-                }
-
+                GetMacAddress();
                 average.Add(dict[_mac].Select(int.Parse).ToList());
                 dict.Clear();
             }
@@ -110,15 +101,12 @@ namespace FFC.Services.WebSocketService
 
         public Reference CreateDataInstance()
         {
-            spvm = new SendPageViewModel();
-
-            var refItem = new Reference();
-
-            refItem.rssI1 = meanlist[0] / MEAN;
-            refItem.rssI2 = meanlist[1] / MEAN;
-            refItem.rssI3 = meanlist[2] / MEAN;
-            refItem.x = Int32.Parse(spvm.XValue);
-            refItem.y = Int32.Parse(spvm.YValue);
+            var refItem = new Reference
+            {
+                rssI1 = meanlist[0] / MEAN,
+                rssI2 = meanlist[1] / MEAN,
+                rssI3 = meanlist[2] / MEAN
+            };
 
             average.Clear();
             meanlist.Clear();
@@ -126,6 +114,16 @@ namespace FFC.Services.WebSocketService
             return refItem;
         }
 
+        private void GetMacAddress()
+        {
+            foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                _mac = BitConverter.ToString(nic.GetPhysicalAddress().GetAddressBytes()).Replace('-', ':');
+
+                Console.WriteLine($"{_mac}");
+                break;
+            }
+        }
 
     }
 }

@@ -70,31 +70,7 @@ namespace FCC.Test.ViewModelsTest
             Assert.AreEqual(0, _uut._yValue);
         }
 
-        ///////////////////////////////////////
-        ////// Testing RSSIValue/_rssi ////////
-        /////////////////////////////////////
-
-        [TestCase("-2147483647")]
-        [TestCase("-100")]
-        [TestCase("0")]
-        [TestCase("100")]
-        [TestCase("2147483647")]
-        public void RSSIValue_ValidValue_Succes(string value)
-        {
-            _uut.RSSIValue = value;
-            Assert.AreEqual(Int32.Parse(value), _uut._rssi);
-        }
-
-        [TestCase("2147483649")]
-        [TestCase("-2147483649")]
-        [TestCase("test")]
-        [TestCase("t232")]
-        public void RSSIValue_InvalidValue_Fail(string value)
-        {
-            _uut.RSSIValue = value;
-            Assert.AreEqual(0, _uut._rssi);
-        }
-
+       
         #endregion
 
         #region Commands
