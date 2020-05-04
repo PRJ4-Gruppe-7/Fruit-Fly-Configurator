@@ -16,5 +16,10 @@ namespace FFC.Views
         {
             InitializeComponent();
         }
+
+        private void LogoutButton_Clicked(object sender, EventArgs e)
+        {
+            DisplayAlert("ALERT", "Functionality is not implemented yet.", "OK");
+        }
     }
 }

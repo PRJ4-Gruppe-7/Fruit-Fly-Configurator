@@ -17,7 +17,7 @@ namespace FFC.Services
     {
         HttpClient _client;
         //Base address for database
-        public static string BaseAddress = "https://fruitflyapi.azurewebsites.net";
+        public static string BaseAddress = "https://fruitflywebapi.azurewebsites.net";
         //API key for authentication
         public static string ApiKey = "829320-adajdasd-12vasdas-baslk3";
         //ReferenceURL used as the combined url
@@ -48,6 +48,9 @@ namespace FFC.Services
             details["x"] = item.x;
             details["y"] = item.y;
             details["rssI1"] = item.rssI1;
+            details["rssI2"] = item.rssI2;
+            details["rssI3"] = item.rssI3;
+
 
             try
             {

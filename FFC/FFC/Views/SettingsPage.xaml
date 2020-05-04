@@ -29,7 +29,7 @@
 
 		<Button Text="Log out" Margin="20 ,20,0,20" HeightRequest="50"
 		        VerticalOptions="End" WidthRequest="220" FontSize="16" 
-		        HorizontalOptions="Center" Grid.Row="1">
+		        HorizontalOptions="Center" Grid.Row="1" Clicked="LogoutButton_Clicked">
 		</Button>
 
 	</Grid>

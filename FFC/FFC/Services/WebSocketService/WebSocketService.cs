@@ -31,7 +31,7 @@ namespace FFC.Services.WebSocketService
 
         private static string RandomRSSIString()
         {
-            return String.Format("6.38.202.48;{0},199.187.194.244;{1},76:90:38:19:D5:04;{2},CE:C6:A1:6B:E8:98;{3}", rng.Next(0, 100), rng.Next(0, 100), rng.Next(0, 100), rng.Next(0, 100));
+            return String.Format("CE:86:B6:23:33:C6;{0},199.187.194.244;{1},76:90:38:19:D5:04;{2},CE:C6:A1:6B:E8:98;{3}", rng.Next(0, 100), rng.Next(0, 100), rng.Next(0, 100), rng.Next(0, 100));
         }
 
         public WebSocketService(IASyncSocket socket)
@@ -97,19 +97,19 @@ namespace FFC.Services.WebSocketService
                     }
                 }
             }
+            average.Clear();
         }
 
         public Reference CreateDataInstance()
         {
-            var refItem = new Reference
+            Reference refItem = new Reference
             {
                 rssI1 = meanlist[0] / MEAN,
                 rssI2 = meanlist[1] / MEAN,
                 rssI3 = meanlist[2] / MEAN
             };
-
-            average.Clear();
-            meanlist.Clear();
+            
+            meanlist.Select(x => x = 0);
 
             return refItem;
         }
