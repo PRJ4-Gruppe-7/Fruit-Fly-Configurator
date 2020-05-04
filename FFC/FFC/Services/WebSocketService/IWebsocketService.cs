@@ -9,6 +9,6 @@ namespace FFC.Services.WebSocketService
     {
         void InitiateClient();
         void ReceiveResponse();
-        Reference CreateInstance();
+        Reference CreateDataInstance();
     }
 }

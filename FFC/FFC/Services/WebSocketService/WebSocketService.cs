@@ -27,6 +27,7 @@ namespace FFC.Services.WebSocketService
         public SendPageViewModel BindingContext { get; private set; }
         private static Random rng = new Random(Guid.NewGuid().GetHashCode());
 
+        SendPageViewModel spvm;
 
         private static string RandomRSSIString()
         {
@@ -36,6 +37,7 @@ namespace FFC.Services.WebSocketService
         public WebSocketService(IASyncSocket socket)
         {
             ASyncSocket = socket;
+            
         }
 
         public void InitiateClient()
@@ -106,17 +108,17 @@ namespace FFC.Services.WebSocketService
             }
         }
 
-        public Reference CreateInstance()
+        public Reference CreateDataInstance()
         {
-            var spvm = (SendPageViewModel)this.BindingContext;
+            spvm = new SendPageViewModel();
 
             var refItem = new Reference();
 
             refItem.rssI1 = meanlist[0] / MEAN;
             refItem.rssI2 = meanlist[1] / MEAN;
             refItem.rssI3 = meanlist[2] / MEAN;
-            refItem.x = 0;//Int32.Parse(spvm.XValue);
-            refItem.y = 0;// Int32.Parse(spvm.YValue);
+            refItem.x = Int32.Parse(spvm.XValue);
+            refItem.y = Int32.Parse(spvm.YValue);
 
             average.Clear();
             meanlist.Clear();

@@ -29,7 +29,7 @@ namespace FFC.Services.WebSocketService
 
         public Reference CreateDataInstance()
         {
-            return websocketService.CreateInstance();
+            return websocketService.CreateDataInstance();
         }
     }
 }
