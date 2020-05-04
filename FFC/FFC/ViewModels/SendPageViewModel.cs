@@ -131,6 +131,8 @@ namespace FFC.ViewModels
             App.webSocketManager.InitiateClient();
             App.webSocketManager.ReceiveAndProcessResponse();
             refItem = App.webSocketManager.CreateDataInstance();
+            refItem.x = Int32.Parse(XValue);
+            refItem.y = Int32.Parse(YValue);
             await App.refPointManager.PostRefPointAsync(refItem);
         }
         #endregion
