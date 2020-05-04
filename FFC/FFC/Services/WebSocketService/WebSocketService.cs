@@ -31,7 +31,7 @@ namespace FFC.Services.WebSocketService
 
         private static string RandomRSSIString()
         {
-            return String.Format("6.38.202.48;{0},199.187.194.244;{1},76:90:38:19:D5:04;{2},7.192.163.51;{3}", rng.Next(0, 100), rng.Next(0, 100), rng.Next(0, 100), rng.Next(0, 100));
+            return String.Format("6.38.202.48;{0},199.187.194.244;{1},76:90:38:19:D5:04;{2},CE:C6:A1:6B:E8:98;{3}", rng.Next(0, 100), rng.Next(0, 100), rng.Next(0, 100), rng.Next(0, 100));
         }
 
         public WebSocketService(IASyncSocket socket)

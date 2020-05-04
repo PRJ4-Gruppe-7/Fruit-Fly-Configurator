@@ -121,23 +121,19 @@ namespace FFC.ViewModels
         {
             Reference refItem = new Reference();
 
-            //App.webSocketManager.InitiateClient();
-            //App.webSocketManager.ReceiveAndProcessResponse();
-            //refItem = App.webSocketManager.CreateDataInstance();
-            refItem.rssI1 = 30;
-            BindXYvalues(refItem);
-            await App.refPointManager.PostRefPointAsync(refItem);
+            try
+            {
+                App.webSocketManager.InitiateClient();
+                App.webSocketManager.ReceiveAndProcessResponse();
+                refItem = App.webSocketManager.CreateDataInstance();
+                refItem.x = _xValue;
+                refItem.y = _yValue;
+                await App.refPointManager.PostRefPointAsync(refItem);
+            }
+
+            catch(ArgumentException arg)
+            { Console.WriteLine($"{arg} - Server possibly down"); }
         }
-        #endregion
-
-        #region Methods
-
-        void BindXYvalues(Reference _ref)
-        {
-            _ref.x = Int32.Parse(XValue);
-            _ref.y = _yValue;
-        }
-
         #endregion
     }
 }
