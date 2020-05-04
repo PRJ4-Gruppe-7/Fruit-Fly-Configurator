@@ -120,6 +120,8 @@ namespace FFC.Services.WebSocketService
             return refItem;
         }
 
+
+        //Retrieves mac address for this device
         private void GetMacAddress()
         {
             foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
