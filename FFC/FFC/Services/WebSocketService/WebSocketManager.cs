@@ -20,6 +20,7 @@ namespace FFC.Services.WebSocketService
             websocketService.InitiateClient();
         }
 
+
         //Check interface for websocketservice for elaboration of functionality
         public void ReceiveAndProcessResponse()
         {
@@ -30,6 +31,11 @@ namespace FFC.Services.WebSocketService
         public Reference CreateDataInstance()
         {
             return websocketService.CreateDataInstance();
+        }
+
+        public void ShutdownClient()
+        {
+            websocketService.ShutdownClient();
         }
     }
 }

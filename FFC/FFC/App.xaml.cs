@@ -2,6 +2,7 @@
 using FFC.Services.WebSocketService;
 using FFC.Views;
 using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -25,7 +26,16 @@ namespace FFC
             InitializeComponent();
             refPointManager = new RefPointManager(new RestApiService());
 
-            webSocketService = new WebSocketService(new ASyncSocket(sources[0].numericHostName, sources[0].port));
+            WebSocketService webSocketService;
+
+            var templist = new List<ASyncSocket>();
+
+            for (int i = 0; i < sources.Length; i++)
+            {
+                templist.Add(new ASyncSocket(sources[i].numericHostName, sources[i].port));
+               
+            }
+            webSocketService = new WebSocketService(templist);
             webSocketManager = new WebSocketManager(webSocketService);
 
             MainPage = new MainPage();

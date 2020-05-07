@@ -17,5 +17,7 @@ namespace FFC.Services.WebSocketService
         //Creates instance of Reference and assigns mean RSSI values from each sniffer
         //and returns the instance
         Reference CreateDataInstance();
+
+        void ShutdownClient();
     }
 }
