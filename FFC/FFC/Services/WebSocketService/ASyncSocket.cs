@@ -143,7 +143,7 @@ namespace FFC.Services
                 }
             }
 
-            public void Send(String data)
+            public void Send(string data)
             {
                 byte[] byteData = Encoding.ASCII.GetBytes(data);
 

@@ -10,7 +10,7 @@ namespace FFC.Services.WebSocketService
         void StartClient();
 
         //Sends request to client
-        void Send(String data);
+        void Send(string data);
 
         //Receives response from client
         void Receive();

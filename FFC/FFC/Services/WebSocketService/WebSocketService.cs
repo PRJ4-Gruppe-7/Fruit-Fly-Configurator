@@ -45,7 +45,7 @@ namespace FFC.Services.WebSocketService
             for (int i = 0; i < Sniffer_Count; i++)
             {
                 sockets[i] = (ASyncSocket)ASyncSocket;
-                //ASyncSocket.StartClient();
+                ASyncSocket.StartClient();
             }
         }
 
@@ -55,14 +55,18 @@ namespace FFC.Services.WebSocketService
             {
                 for (int i = 0; i < Sniffer_Count; i++)
                 {
-                    //sockets[i].Send("RETR test.txt");
-                    //sockets[i].Receive();
+                    sockets[i].Send("RETR SnifferData.txt");
+                    sockets[i].Receive();
 
 
+                    foreach (var resp in sockets[i].response)
+                    {
+                        resp.Split(',');
+                    }
                     //sockets[i].response.Split(',');
 
                     //For testing purpose. Fills response for sockets. Delete later.
-                    sockets[i].response = RandomRSSIString().Split(',');
+                    //sockets[i].response = RandomRSSIString().Split(',');
 
                     for (int j = 0; j < sockets[i].response.Length; j++)
                     {
@@ -77,7 +81,7 @@ namespace FFC.Services.WebSocketService
                         }
                     }
 
-                    //sockets[i].ShutdownClient();
+                    sockets[i].ShutdownClient();
                 }
 
                 GetMacAddress();
@@ -114,8 +118,6 @@ namespace FFC.Services.WebSocketService
                 rssI2 = meanlist[1] / MEAN,
                 rssI3 = meanlist[2] / MEAN
             };
-            
-            //meanlist.Select(x => x = 0).ToList();
 
             return refItem;
         }
@@ -126,12 +128,11 @@ namespace FFC.Services.WebSocketService
         {
             foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
             {
-                _mac = BitConverter.ToString(nic.GetPhysicalAddress().GetAddressBytes()).Replace('-', ':');
+                _mac = BitConverter.ToString(nic.GetPhysicalAddress().GetAddressBytes()).Replace('-', ':').ToLower();
 
                 Console.WriteLine($"{_mac}");
                 break;
             }
         }
-
     }
 }
