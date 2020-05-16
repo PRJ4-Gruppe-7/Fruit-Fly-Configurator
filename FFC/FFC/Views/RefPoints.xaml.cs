@@ -20,22 +20,22 @@ namespace FFC.Views
         {
             InitializeComponent();
             vm = new RefPointsViewModel();
-            vm.GetRefPoints();
+            vm.GetRefPointsAsync();
             listViewPoints.ItemsSource = vm.Refs;
             this.BindingContext = vm;
         }
 
-        void GetRefPoints_OnClicked(object sender, EventArgs e)
+        private void GetRefPoints_OnClicked(object sender, EventArgs e)
         {
-            vm.GetRefPoints();
+            vm.GetRefPointsAsync();
             listViewPoints.ItemsSource = vm.Refs;
         }
-        async void DeleteRef_Clicked(object sender, EventArgs e)
+        private async void DeleteRefAsync_Clicked(object sender, EventArgs e)
         {
             bool answer = await DisplayAlert("Warning", $"Are you sure you want to delete reference point {vm.CurrentID} from list? This cannot be undone.", "Yes", "No");
 
             if (answer)
-                vm.DeleteRefPoint();
+                vm.DeleteRefPointAsync();
         }
 
         private void listViewPoints_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -51,12 +51,12 @@ namespace FFC.Views
                             "Reset - deletes all reference points in list.", "OK");
         }
 
-        async void Reset_Clicked(object sender, EventArgs e)
+        private async void ResetAsync_Clicked(object sender, EventArgs e)
         {
             bool answer = await DisplayAlert("Warning", "Are you sure you want to delete all reference points from list? This cannot be undone.", "Yes", "No");
             
             if(answer)
-                vm.DeleteAllRefPoints();
+                vm.DeleteAllRefPointsAsync();
         }
     }
 }

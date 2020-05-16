@@ -41,11 +41,11 @@
 		</Button>
 		
 		<Button Text="Delete" Margin="20,20,20,20" HeightRequest="50" VerticalOptions="Start"
-				WidthRequest="110" FontSize="16" Grid.Row="0" HorizontalOptions="End" Clicked="DeleteRef_Clicked"
+				WidthRequest="110" FontSize="16" Grid.Row="0" HorizontalOptions="End" Clicked="DeleteRefAsync_Clicked"
 				Grid.Column="1"/>
 
 		<Button Text="Reset" Margin="0,20,20,20" HeightRequest="50" VerticalOptions="Start"
-				WidthRequest="100" FontSize="16" Grid.Row="0" HorizontalOptions="Center" Clicked="Reset_Clicked"
+				WidthRequest="100" FontSize="16" Grid.Row="0" HorizontalOptions="Center" Clicked="ResetAsync_Clicked"
 				Grid.Column="2"/>
 
 		<ListView x:Name="listViewPoints" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding Refs}" 

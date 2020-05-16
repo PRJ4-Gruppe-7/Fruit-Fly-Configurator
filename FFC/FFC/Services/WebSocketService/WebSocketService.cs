@@ -27,7 +27,6 @@ namespace FFC.Services.WebSocketService
         public SendPageViewModel BindingContext { get; private set; }
         private static Random rng = new Random(Guid.NewGuid().GetHashCode());
 
-        SendPageViewModel spvm;
 
         private static string RandomRSSIString()
         {

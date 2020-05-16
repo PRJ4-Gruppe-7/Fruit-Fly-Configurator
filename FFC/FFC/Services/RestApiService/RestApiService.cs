@@ -108,7 +108,7 @@ namespace FFC.Services
             }
         }
 
-        public async Task<Reference> GetSpecificRefID(string id)
+        public async Task<Reference> GetSpecificRefIDAsync(string id)
         {
             Item = new Reference();
             try

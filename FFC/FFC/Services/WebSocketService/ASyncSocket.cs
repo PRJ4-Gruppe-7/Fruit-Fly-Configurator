@@ -22,7 +22,7 @@ namespace FFC.Services
         public int port;
     }
 
-        public class StateObject
+    public class StateObject
         {
             public Socket workSocket = null;
             public const int ReceiveBufferSize = 256;

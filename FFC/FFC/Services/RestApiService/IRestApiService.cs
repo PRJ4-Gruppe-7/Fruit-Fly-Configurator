@@ -17,7 +17,7 @@ namespace FFC.Services
         Task DeleteReferenceAsync(string id);
 
         //GET reference point by ID
-        Task<Reference> GetSpecificRefID(string id);
+        Task<Reference> GetSpecificRefIDAsync(string id);
 
         //DELETE all reference points in database
         Task DeleteAllRereferenceAsync();

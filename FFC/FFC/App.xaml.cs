@@ -9,8 +9,7 @@ namespace FFC
 {
     public partial class App : Application
     {
-        public static RefPointManager refPointManager { get; private set; }
-        public static WebSocketService webSocketService { get; private set; }
+        public static RestApiManager RestApiManager { get; private set; }
         public static WebSocketManager webSocketManager { get; private set; }
 
         public static SnifferSource[] sources =
@@ -21,9 +20,8 @@ namespace FFC
         public App()
         {
             InitializeComponent();
-            refPointManager = new RefPointManager(new RestApiService());
-            webSocketService = new WebSocketService(new ASyncSocket(sources[0].numericHostName, sources[0].port));
-            webSocketManager = new WebSocketManager(webSocketService);
+            RestApiManager = new RestApiManager(new RestApiService());
+            webSocketManager = new WebSocketManager(new WebSocketService(new ASyncSocket(sources[0].numericHostName, sources[0].port)));
             MainPage = new MainPage();
         }
 

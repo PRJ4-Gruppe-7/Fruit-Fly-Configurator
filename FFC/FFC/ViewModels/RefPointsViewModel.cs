@@ -43,11 +43,11 @@ namespace FFC.ViewModels
 
         #region Methods
 
-        public async void GetRefPoints()
+        public async void GetRefPointsAsync()
         {
             refs.Clear();
             
-            var tempRefs = await App.refPointManager.GetRefPointsAsync();
+            var tempRefs = await App.RestApiManager.GetRefPointsAsync();
 
             for (int i = 0; i < tempRefs.Count; i++)
             {
@@ -57,22 +57,22 @@ namespace FFC.ViewModels
             NotifyPropertyChanged(nameof(Refs));
         }
 
-        public async void DeleteRefPoint()
+        public async void DeleteRefPointAsync()
         {
             string id = CurrentID.ToString();
-            await App.refPointManager.DeleteReferenceAsync(id);
+            await App.RestApiManager.DeleteReferenceAsync(id);
 
-            GetRefPoints();
+            GetRefPointsAsync();
         }
 
-        public async void DeleteAllRefPoints()
+        public async void DeleteAllRefPointsAsync()
         {
-            await App.refPointManager.DeleteAllRefPointsAsync();
+            await App.RestApiManager.DeleteAllRefPointsAsync();
 
             //Reseeding ID-count on deletion
-            await App.refPointManager.PutRefPointAsync();
+            await App.RestApiManager.PutRefPointAsync();
 
-            GetRefPoints();
+            GetRefPointsAsync();
         }
         #endregion
     }

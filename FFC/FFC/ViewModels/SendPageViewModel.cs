@@ -23,7 +23,7 @@ namespace FFC.ViewModels
 
         #region Properties
 
-        private int _xValue { get; set; }
+        public int _xValue { get; set; }
         public string XValue
         {
             get { return $"{_xValue}"; }
@@ -42,7 +42,7 @@ namespace FFC.ViewModels
             }
         }
 
-        private int _yValue { get; set; }
+        public int _yValue { get; set; }
         public string YValue
         {
             get { return $"{_yValue}"; }
@@ -115,10 +115,10 @@ namespace FFC.ViewModels
         ICommand _sendRefCommand;
         public ICommand SendRefCommand
         {
-            get { return _sendRefCommand ?? (_sendRefCommand = new DelegateCommand(SendRefCommandExecute)); }
+            get { return _sendRefCommand ?? (_sendRefCommand = new DelegateCommand(SendRefCommandExecuteAsync)); }
         }
 
-        async void SendRefCommandExecute()
+        async void SendRefCommandExecuteAsync()
         {
             Reference refItem = new Reference();
 
@@ -129,7 +129,7 @@ namespace FFC.ViewModels
                 refItem = App.webSocketManager.CreateDataInstance();
                 refItem.x = _xValue;
                 refItem.y = _yValue;
-                await App.refPointManager.PostRefPointAsync(refItem);
+                await App.RestApiManager.PostRefPointAsync(refItem);
             }
 
             catch(ArgumentException arg)

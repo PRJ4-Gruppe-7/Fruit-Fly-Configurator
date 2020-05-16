@@ -7,11 +7,11 @@ using FFC.Models;
 
 namespace FFC.Services
 {
-    public class RefPointManager
+    public class RestApiManager
     {
         IRestApiService restApiService;
 
-        public RefPointManager(IRestApiService service)
+        public RestApiManager(IRestApiService service)
         {
             restApiService = service;
         }
@@ -37,7 +37,7 @@ namespace FFC.Services
         //Gets specific reference point from database
         public Task<Reference> GetSpecificRefPointAsync(string id)
         {
-            return restApiService.GetSpecificRefID(id);
+            return restApiService.GetSpecificRefIDAsync(id);
         }
 
         //Deletes all reference points from database
