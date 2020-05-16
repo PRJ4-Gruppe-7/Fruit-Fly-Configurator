@@ -25,7 +25,7 @@ namespace FFC.Services
     public class StateObject
         {
             public Socket workSocket = null;
-            public const int ReceiveBufferSize = 256;
+            public const int ReceiveBufferSize = 1024 *10;
             public byte[] Receivebuffer = new byte[ReceiveBufferSize];
             public StringBuilder sb = new StringBuilder();
         }
@@ -143,7 +143,7 @@ namespace FFC.Services
                 }
             }
 
-            public void Send(String data)
+            public void Send(string data)
             {
                 byte[] byteData = Encoding.ASCII.GetBytes(data);
 

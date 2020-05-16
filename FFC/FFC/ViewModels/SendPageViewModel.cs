@@ -133,7 +133,9 @@ namespace FFC.ViewModels
             }
 
             catch(ArgumentException arg)
-            { Console.WriteLine($"{arg} - Server possibly down"); }
+            { Console.WriteLine($"{arg} - Server possibly down");
+                App.webSocketManager.ShutdownClient();
+            }
         }
         #endregion
     }
