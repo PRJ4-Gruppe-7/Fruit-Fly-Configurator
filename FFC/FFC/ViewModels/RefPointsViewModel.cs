@@ -47,7 +47,7 @@ namespace FFC.ViewModels
         {
             refs.Clear();
             
-            var tempRefs = await App.RestApiManager.GetRefPointsAsync();
+            var tempRefs = await App.restApiManager.GetRefPointsAsync();
 
             for (int i = 0; i < tempRefs.Count; i++)
             {
@@ -60,17 +60,17 @@ namespace FFC.ViewModels
         public async void DeleteRefPointAsync()
         {
             string id = CurrentID.ToString();
-            await App.RestApiManager.DeleteReferenceAsync(id);
+            await App.restApiManager.DeleteReferenceAsync(id);
 
             GetRefPointsAsync();
         }
 
         public async void DeleteAllRefPointsAsync()
         {
-            await App.RestApiManager.DeleteAllRefPointsAsync();
+            await App.restApiManager.DeleteAllRefPointsAsync();
 
             //Reseeding ID-count on deletion
-            await App.RestApiManager.PutRefPointAsync();
+            await App.restApiManager.PutRefPointAsync();
 
             GetRefPointsAsync();
         }

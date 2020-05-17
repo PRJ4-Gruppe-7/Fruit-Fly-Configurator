@@ -129,7 +129,7 @@ namespace FFC.ViewModels
                 refItem = App.webSocketManager.CreateDataInstance();
                 refItem.x = _xValue;
                 refItem.y = _yValue;
-                await App.RestApiManager.PostRefPointAsync(refItem);
+                await App.restApiManager.PostRefPointAsync(refItem);
             }
 
             catch(ArgumentException arg)

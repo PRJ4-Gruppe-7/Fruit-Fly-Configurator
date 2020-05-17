@@ -13,7 +13,6 @@ namespace FFC.Services.WebSocketService
     {
         string _mac;
         private static int Sniffer_Count = 3;
-        private static int MEAN = 5;
 
         IASyncSocket ASyncSocket;
 

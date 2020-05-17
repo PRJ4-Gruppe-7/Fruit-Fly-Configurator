@@ -10,7 +10,7 @@ namespace FFC
 {
     public partial class App : Application
     {
-        public static RefPointManager refPointManager { get; private set; }
+        public static RestApiManager restApiManager { get; private set; }
         public static WebSocketService webSocketService { get; private set; }
         public static WebSocketManager webSocketManager { get; private set; }
 
@@ -24,7 +24,7 @@ namespace FFC
         public App()
         {
             InitializeComponent();
-            refPointManager = new RefPointManager(new RestApiService());
+            restApiManager = new RestApiManager(new RestApiService());
 
             WebSocketService webSocketService;
 
