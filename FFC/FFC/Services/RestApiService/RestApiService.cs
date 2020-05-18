@@ -44,8 +44,8 @@ namespace FFC.Services
             //Converting the jsonString to a Json object to modify values
             var details = JsonObject.Parse(jsonString);
 
-            details["x"] = item.x;
-            details["y"] = item.y;
+            details["x"] = item.X;
+            details["y"] = item.X;
             details["rssI1"] = item.rssI1;
             details["rssI2"] = item.rssI2;
             details["rssI3"] = item.rssI3;

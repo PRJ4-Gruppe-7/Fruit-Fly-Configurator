@@ -41,7 +41,7 @@ namespace FFC.Views
         private void listViewPoints_ItemTapped(object sender, ItemTappedEventArgs e)
         { 
             tempref = (e.Item as Reference);
-            vm.CurrentID = tempref.referencepointId;
+            vm.CurrentID = Int32.Parse(tempref.ID);
         }
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)

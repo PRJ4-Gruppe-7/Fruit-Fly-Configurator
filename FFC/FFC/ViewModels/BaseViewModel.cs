@@ -11,7 +11,7 @@ namespace FFC.ViewModels
     {
         #region Properties
 
-        string title = string.Empty;
+        private string title = string.Empty;
         public string Title
         {
             get { return title; }

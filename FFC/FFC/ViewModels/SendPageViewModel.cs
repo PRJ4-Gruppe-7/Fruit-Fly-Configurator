@@ -7,25 +7,25 @@ namespace FFC.ViewModels
 {
     public class SendPageViewModel : BaseViewModel
     {
-        private Coordinates _currentCoordinates;
+        private Reference _currentReference;
 
         public SendPageViewModel()
         {
-            _currentCoordinates = new Coordinates();
+            _currentReference = new Reference();
             Title = "Send Reference Points";
         }
 
-        #region CurrentCoordinates
+        #region CurrentReference
 
-        public Coordinates CurrentCoordinates
+        public Reference CurrentReference
         {
-            get { return _currentCoordinates; }
+            get { return _currentReference; }
             set
             {
-                if (value != _currentCoordinates)
+                if (value != _currentReference)
                 {
-                    _currentCoordinates = value;
-                    NotifyPropertyChanged(nameof(CurrentCoordinates));
+                    _currentReference = value;
+                    NotifyPropertyChanged(nameof(CurrentReference));
                 }
             }
         }
@@ -44,42 +44,42 @@ namespace FFC.ViewModels
         {
             if (value == "x")
             {
-                CurrentCoordinates.XValue++;
-                NotifyPropertyChanged(nameof(CurrentCoordinates));
+                CurrentReference.X++;
+                NotifyPropertyChanged(nameof(CurrentReference));
             }
 
             if (value == "y")
             {
-                CurrentCoordinates.YValue++;
-                NotifyPropertyChanged(nameof(CurrentCoordinates));
+                CurrentReference.Y++;
+                NotifyPropertyChanged(nameof(CurrentReference));
             }
         }
 
         ICommand _decrementXCommand;
         public ICommand DecrementXCommand => _decrementXCommand ?? (_decrementXCommand = 
-            new DelegateCommand(DecrementXCommandExecute, DecrementXCommandCanExecute).ObservesProperty(() => CurrentCoordinates));
+            new DelegateCommand(DecrementXCommandExecute, DecrementXCommandCanExecute).ObservesProperty(() => CurrentReference));
 
         bool DecrementXCommandCanExecute()
-        { return CurrentCoordinates.XValue > 0 ? true : false; }
+        { return CurrentReference.X > 0 ? true : false; }
 
 
         void DecrementXCommandExecute()
         {
-            CurrentCoordinates.XValue--;
-            NotifyPropertyChanged(nameof(CurrentCoordinates));
+            CurrentReference.X--;
+            NotifyPropertyChanged(nameof(CurrentReference));
         }
 
         ICommand _decrementYCommand;
         public ICommand DecrementYCommand => _decrementYCommand ?? (_decrementYCommand =
-            new DelegateCommand(DecrementYCommandExecute, DecrementYCommandCanExecute).ObservesProperty(() => CurrentCoordinates));
+            new DelegateCommand(DecrementYCommandExecute, DecrementYCommandCanExecute).ObservesProperty(() => CurrentReference));
 
         bool DecrementYCommandCanExecute()
-        { return CurrentCoordinates.YValue > 0 ? true : false; }
+        { return CurrentReference.Y > 0 ? true : false; }
 
         void DecrementYCommandExecute()
         {
-            CurrentCoordinates.YValue--;
-            NotifyPropertyChanged(nameof(CurrentCoordinates));
+            CurrentReference.Y--;
+            NotifyPropertyChanged(nameof(CurrentReference));
         }
 
         ICommand _sendRefCommand;
@@ -97,8 +97,8 @@ namespace FFC.ViewModels
                 App.webSocketManager.InitiateClient();
                 App.webSocketManager.ReceiveAndProcessResponse();
                 refItem = App.webSocketManager.CreateDataInstance();
-                //refItem.x = CurrentCoordinates.XValue;
-                //refItem.y = CurrentCoordinates.YValue;
+                refItem.X = CurrentReference.X;
+                refItem.Y = CurrentReference.Y;
                 await App.restApiManager.PostRefPointAsync(refItem);
             }
 
