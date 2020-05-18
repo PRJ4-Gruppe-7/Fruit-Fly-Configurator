@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using FFC.Services;
 
 namespace FFC.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : ObservableObject
     {
         #region Properties
 
@@ -14,34 +15,13 @@ namespace FFC.ViewModels
         public string Title
         {
             get { return title; }
-            set 
+            set
             {
                 title = value;
-                NotifyPropertyChanged(nameof(Title)); 
+                NotifyPropertyChanged(nameof(Title));
             }
         }
 
-        #endregion
-
-        #region Commands
-
-        #endregion
-
-        #region Methods
-
-        #endregion
-
-        #region INotifyPropertyChanged
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            var changed = PropertyChanged;
-            if (changed == null)
-                return;
-
-            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
         #endregion
     }
 }

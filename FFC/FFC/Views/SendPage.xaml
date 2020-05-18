@@ -6,6 +6,7 @@
              xmlns:vm="clr-namespace:FFC.ViewModels"
 			 xmlns:local="clr-namespace:FFC.Services"
              xmlns:mo="clr-namespace:FFC.Models;assembly=FFC"
+             xmlns:ffc="clr-namespace:FFC;assembly=FFC"
              mc:Ignorable="d"
              x:Class="FFC.Views.SendPage"
              Title="{Binding Title}">
@@ -14,6 +15,11 @@
         <vm:SendPageViewModel/>
     </ContentPage.BindingContext>
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:StringToUintConverter x:Key="StringToUintConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Info" IconImageSource="info.png" Clicked="InfoClicked"/>
@@ -36,7 +42,7 @@
 
         <StackLayout Grid.Row="1" Grid.Column="0">
             <Button Text="X+" Command="{Binding IncrementCommand}" CommandParameter="x"/>
-			<Entry  Text="{Binding XValue}" Placeholder="X" Keyboard="Numeric" >
+            <Entry  Text="{Binding CurrentReference.X, Converter={StaticResource StringToUintConverter}}" Placeholder="X" Keyboard="Numeric" >
 				<Entry.Behaviors>
 					<local:NumericValidationBehavior />
 				</Entry.Behaviors>
@@ -46,7 +52,7 @@
 
         <StackLayout Grid.Row="1" Grid.Column="1">
             <Button Text="Y+" Command="{Binding IncrementCommand}" CommandParameter="y"/>
-			<Entry  Text="{Binding YValue}" Placeholder="Y" >
+            <Entry  Text="{Binding CurrentReference.Y, Converter={StaticResource StringToUintConverter}}" Placeholder="Y" >
 				<Entry.Behaviors>
 					<local:NumericValidationBehavior />
 				</Entry.Behaviors>
