@@ -94,7 +94,6 @@ namespace FFC.ViewModels
 
             try
             {
-                
                     refItem.rssI1 = 0; 
                     refItem.rssI2 = 0;
                     refItem.rssI3 = 0;
