@@ -94,10 +94,9 @@ namespace FFC.ViewModels
 
             try
             {
-                    refItem.rssI1 = 0; 
-                    refItem.rssI2 = 0;
-                    refItem.rssI3 = 0;
-
+                App.webSocketManager.InitiateClient();
+                App.webSocketManager.ReceiveAndProcessResponse();
+                refItem = App.webSocketManager.CreateDataInstance();
                 refItem.x = CurrentReference.x;
                 refItem.y = CurrentReference.y;
                 await App.restApiManager.PostRefPointAsync(refItem);
