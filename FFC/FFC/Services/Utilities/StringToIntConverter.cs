@@ -4,6 +4,10 @@ using System.Globalization;
 using System.Text;
 using Xamarin.Forms;
 
+/*
+ * https://www.wpf-tutorial.com/data-binding/value-conversion-with-ivalueconverter/?fbclid=IwAR2tt8Wogh1ids0Q9bLwylGzfDQH8MNjv4zTuXjqx1kvOmhT30fntRLgMyc
+ */
+
 namespace FFC.Services
 {
     class StringToIntConverter : IValueConverter

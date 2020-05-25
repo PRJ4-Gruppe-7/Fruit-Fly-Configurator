@@ -6,6 +6,10 @@ using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 
 namespace FFC.Services
+
+/*
+ * https://stackoverflow.com/questions/44475667/is-it-possible-specify-xamarin-forms-entry-numeric-keyboard-without-comma-or-dec
+ */
 {
     //Validates input in entries, to make sure only digits are allowed
     public class NumericValidationBehavior : Behavior<Xamarin.Forms.Entry>

@@ -11,6 +11,10 @@ using FFC.Models;
 using System.Json;
 using System.IO;
 
+/*
+ * https://docs.microsoft.com/en-us/xamarin/xamarin-forms/data-cloud/web-services/rest
+ */
+
 namespace FFC.Services
 {
     public class RestApiService : IRestApiService
