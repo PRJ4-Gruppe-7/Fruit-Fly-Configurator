@@ -17,7 +17,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <local:StringToUintConverter x:Key="StringToUintConverter" />
+            <local:StringToIntConverter x:Key="StringToIntConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -42,7 +42,7 @@
 
         <StackLayout Grid.Row="1" Grid.Column="0">
             <Button Text="X+" Command="{Binding IncrementCommand}" CommandParameter="x"/>
-            <Entry  Text="{Binding CurrentReference.X, Converter={StaticResource StringToUintConverter}}" Placeholder="X" Keyboard="Numeric" >
+            <Entry  Text="{Binding CurrentReference.x, Converter={StaticResource StringToIntConverter}}" Placeholder="X" Keyboard="Numeric" >
 				<Entry.Behaviors>
 					<local:NumericValidationBehavior />
 				</Entry.Behaviors>
@@ -52,7 +52,7 @@
 
         <StackLayout Grid.Row="1" Grid.Column="1">
             <Button Text="Y+" Command="{Binding IncrementCommand}" CommandParameter="y"/>
-            <Entry  Text="{Binding CurrentReference.Y, Converter={StaticResource StringToUintConverter}}" Placeholder="Y" >
+            <Entry  Text="{Binding CurrentReference.y, Converter={StaticResource StringToIntConverter}}" Placeholder="Y" >
 				<Entry.Behaviors>
 					<local:NumericValidationBehavior />
 				</Entry.Behaviors>

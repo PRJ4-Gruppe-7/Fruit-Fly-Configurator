@@ -44,8 +44,8 @@ namespace FFC.Services
             //Converting the jsonString to a Json object to modify values
             var details = JsonObject.Parse(jsonString);
 
-            details["x"] = item.X;
-            details["y"] = item.X;
+            details["x"] = item.x;
+            details["y"] = item.y;
             details["rssI1"] = item.rssI1;
             details["rssI2"] = item.rssI2;
             details["rssI3"] = item.rssI3;
@@ -76,7 +76,8 @@ namespace FFC.Services
             try
             {
                 //Getting
-                var response = await _client.GetAsync(ReferenceUrl);
+                string tempRefUrl = "https://fruitflywebapi.azurewebsites.net/api/Referencepoint";
+                var response = await _client.GetAsync(tempRefUrl);
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();

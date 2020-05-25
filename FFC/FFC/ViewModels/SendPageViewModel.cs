@@ -44,13 +44,13 @@ namespace FFC.ViewModels
         {
             if (value == "x")
             {
-                CurrentReference.X++;
+                CurrentReference.x++;
                 NotifyPropertyChanged(nameof(CurrentReference));
             }
 
             if (value == "y")
             {
-                CurrentReference.Y++;
+                CurrentReference.y++;
                 NotifyPropertyChanged(nameof(CurrentReference));
             }
         }
@@ -60,12 +60,12 @@ namespace FFC.ViewModels
             new DelegateCommand(DecrementXCommandExecute, DecrementXCommandCanExecute).ObservesProperty(() => CurrentReference));
 
         bool DecrementXCommandCanExecute()
-        { return CurrentReference.X > 0 ? true : false; }
+        { return CurrentReference.x > 0 ? true : false; }
 
 
         void DecrementXCommandExecute()
         {
-            CurrentReference.X--;
+            CurrentReference.x--;
             NotifyPropertyChanged(nameof(CurrentReference));
         }
 
@@ -74,11 +74,11 @@ namespace FFC.ViewModels
             new DelegateCommand(DecrementYCommandExecute, DecrementYCommandCanExecute).ObservesProperty(() => CurrentReference));
 
         bool DecrementYCommandCanExecute()
-        { return CurrentReference.Y > 0 ? true : false; }
+        { return CurrentReference.y > 0 ? true : false; }
 
         void DecrementYCommandExecute()
         {
-            CurrentReference.Y--;
+            CurrentReference.y--;
             NotifyPropertyChanged(nameof(CurrentReference));
         }
 
@@ -94,11 +94,13 @@ namespace FFC.ViewModels
 
             try
             {
-                App.webSocketManager.InitiateClient();
-                App.webSocketManager.ReceiveAndProcessResponse();
-                refItem = App.webSocketManager.CreateDataInstance();
-                refItem.X = CurrentReference.X;
-                refItem.Y = CurrentReference.Y;
+                
+                    refItem.rssI1 = 0; 
+                    refItem.rssI2 = 0;
+                    refItem.rssI3 = 0;
+
+                refItem.x = CurrentReference.x;
+                refItem.y = CurrentReference.y;
                 await App.restApiManager.PostRefPointAsync(refItem);
             }
 

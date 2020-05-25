@@ -51,7 +51,7 @@ namespace FFC.ViewModels
 
             for (int i = 0; i < tempRefs.Count; i++)
             {
-                refs.Add(new Reference { ID = tempRefs[i].ID, X = tempRefs[i].X, Y = tempRefs[i].Y, rssI1 = tempRefs[i].rssI1, rssI2 = tempRefs[i].rssI2, rssI3 = tempRefs[i].rssI3 });
+                refs.Add(new Reference { referencepointId = tempRefs[i].referencepointId, x = tempRefs[i].x, y = tempRefs[i].y, rssI1 = tempRefs[i].rssI1, rssI2 = tempRefs[i].rssI2, rssI3 = tempRefs[i].rssI3 });
             }
 
             NotifyPropertyChanged(nameof(Refs));

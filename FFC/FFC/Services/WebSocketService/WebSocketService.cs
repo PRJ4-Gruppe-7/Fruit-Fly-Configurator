@@ -42,7 +42,7 @@ namespace FFC.Services.WebSocketService
         {
             for (int i = 0; i < Sniffer_Count; i++)
             {
-                //sockets[i] = (ASyncSocket)ASyncSocket;
+                sockets[i] = (ASyncSocket)ASyncSocket;
                 System.Threading.Thread.Sleep(1000);
                 sockets[i].StartClient();
             }

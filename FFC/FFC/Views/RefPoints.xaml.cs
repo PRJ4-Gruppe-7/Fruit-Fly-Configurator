@@ -20,9 +20,7 @@ namespace FFC.Views
         {
             InitializeComponent();
             vm = new RefPointsViewModel();
-            vm.GetRefPointsAsync();
-            listViewPoints.ItemsSource = vm.Refs;
-            this.BindingContext = vm;
+
         }
 
         private void GetRefPoints_OnClicked(object sender, EventArgs e)
@@ -41,7 +39,7 @@ namespace FFC.Views
         private void listViewPoints_ItemTapped(object sender, ItemTappedEventArgs e)
         { 
             tempref = (e.Item as Reference);
-            vm.CurrentID = Int32.Parse(tempref.ID);
+            vm.CurrentID = tempref.referencepointId;
         }
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)

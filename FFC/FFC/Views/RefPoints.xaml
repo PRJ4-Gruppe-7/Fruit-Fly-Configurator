@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:FFC.ViewModels"
              xmlns:mo="clr-namespace:FFC.Models;assembly=FFC"
-             xmlns:system="clr-namespace:System;assembly=netstandard"
+             xmlns:system="clr-namespace:System;assembly=netstandard" xmlns:local="clr-namespace:FFC.Services"
              mc:Ignorable="d"
              x:Class="FFC.Views.RefPoints"
              Title="{Binding Title}">
@@ -13,6 +13,12 @@
 <ContentPage.BindingContext>
     <vm:RefPointsViewModel/>
 </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:StringToIntConverter x:Key="StringToIntConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
 	<ContentPage.ToolbarItems>
 		<ToolbarItem Text="Info" IconImageSource="info.png" Clicked="ToolbarItem_Clicked"/>
@@ -49,10 +55,10 @@
 				Grid.Column="2"/>
 
 		<ListView x:Name="listViewPoints" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding Refs}" 
-				  ItemTapped="listViewPoints_ItemTapped" SelectedItem="{Binding ThisItem}" >
+				  ItemTapped="listViewPoints_ItemTapped" SelectedItem="{Binding CurrentID}" >
 				<ListView.ItemTemplate>
 				<DataTemplate>
-					<TextCell Text="{Binding IDstring}" Detail="{Binding detail}" />
+                    <TextCell Text="{Binding referencepointId, Converter={StaticResource StringToIntConverter}}" Detail="{Binding Detail}" />
                 </DataTemplate>
 				</ListView.ItemTemplate>
 			</ListView>
