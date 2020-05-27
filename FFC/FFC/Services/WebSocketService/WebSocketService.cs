@@ -57,20 +57,13 @@ namespace FFC.Services.WebSocketService
                 sockets[i].Receive();
                 System.Threading.Thread.Sleep(1000);
 
-
                 foreach (var resp in sockets[i].response)
                 {
                     resp.Split(',');
                 }
 
-
-
-
-                //sockets[i].response.Split(',');
-
                 //For testing purpose. Fills response for sockets. Delete later.
                 //sockets[i].response = RandomRSSIString().Split(',');
-
                 for (int j = 0; j < sockets[i].response.Length - 1; j++)
                 {
                     var thisItem = sockets[i].response[j].Split(';');
@@ -88,12 +81,6 @@ namespace FFC.Services.WebSocketService
             }
 
             GetMacAddress();
-            //average.Add(dict[_mac].Select(int.Parse).ToList());
-
-            //foreach (var item in dict["7c:7a:91:3b:1c:12"])
-            //{
-            //    meanlist.Add(int.Parse(item));
-            //}
 
             for (int i = 0; i < dict["7c:7a:91:3b:1c:12"].Count(); i++)
             {
@@ -101,31 +88,7 @@ namespace FFC.Services.WebSocketService
 
             }
 
-
             dict.Clear();
-
-
-
-            //for (int i = 0; i < meanlist.Count; i++)
-            //{
-            //    meanlist[i] = 0;
-            //}
-
-
-
-            //Extracts values from nested average list for each sniffer 
-            //to accumulate sniffer values and in the end divide by values collected
-            //if (average.Count == MEAN)
-            //{
-            //    foreach (var l in average)
-            //    {
-            //        for (int i = 0; i < l.Count; i++)
-            //        {
-            //            meanlist[i] += l[i];
-            //        }
-            //    }
-            //}
-            //average.Clear();
         }
 
         public Reference CreateDataInstance()

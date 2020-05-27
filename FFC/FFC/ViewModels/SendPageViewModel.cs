@@ -94,9 +94,9 @@ namespace FFC.ViewModels
 
             try
             {
-                App.webSocketManager.InitiateClient();
-                App.webSocketManager.ReceiveAndProcessResponse();
-                refItem = App.webSocketManager.CreateDataInstance();
+                //App.webSocketManager.InitiateClient();
+                //App.webSocketManager.ReceiveAndProcessResponse();
+                //refItem = App.webSocketManager.CreateDataInstance();
                 refItem.x = CurrentReference.x;
                 refItem.y = CurrentReference.y;
                 await App.restApiManager.PostRefPointAsync(refItem);

@@ -125,15 +125,9 @@ namespace FFC.Services
 
                         receiveDone.Set();
                         state.sb.Clear();
-                        //client.BeginReceive(state.Receivebuffer, 0, StateObject.ReceiveBufferSize, 0, new AsyncCallback(ReceiveCallback), state);
                     }
                     else
                     {
-                            if (state.sb.Length > 1)
-                            {
-                                //response = state.sb.ToString();
-                            }
-
                             receiveDone.Set();
                     }
                 }
@@ -158,8 +152,7 @@ namespace FFC.Services
                     Socket client = (Socket) ar.AsyncState;
 
                     int bytesSent = client.EndSend(ar);
-                    //Console.WriteLine("Sent {0} bytes to server.", bytesSent);
- 
+
                     sendDone.Set();
                 }
                 catch (Exception e)

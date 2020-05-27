@@ -45,7 +45,7 @@ namespace FFC.ViewModels
 
         public async void GetRefPointsAsync()
         {
-            refs.Clear();
+            Refs.Clear();
             
             var tempRefs = await App.restApiManager.GetRefPointsAsync();
 
